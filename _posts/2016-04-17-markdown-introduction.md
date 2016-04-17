@@ -1,9 +1,11 @@
 ---
 title: "An Introduction to Markdown"
-date: 2016-04-17 15:20:00
+date: 2016-04-16 15:20:00
 categories: [technologies]
 tags: [markdown]
 ---
+
+An introduction to Markdown (Chinese version)
 
 # Markdown简介
 
@@ -330,3 +332,4 @@ a     |b      |c
 
 * [MacDown for OSX](http://macdown.uranusjr.com/)
 * [MarkDownPad for Windows](https://markdownpad.com)
+I
