@@ -1,0 +1,39 @@
+# Site settings
+title: TPS Cash Team Blog
+description: 'A sharing place for lovely TPS team'
+url: "http://tpscash.github.io"
+baseurl: "/"
+# google_analytics: 'UA-XXXXXX-X'
+# disqus_shortname: 'your-disqus-name'
+
+author:
+  name: 'TPS Cash'
+  email: tpscash@outlook.com
+  twitter_username: tpscash
+  facebook_username: tpscash
+  github_username:  tpscash
+  linkedin_username:  tpscash
+
+defaults:
+  -
+    scope:
+      path: ''
+      type: 'posts'
+    values:
+        layout: 'post'
+
+# Build settings
+destination: _site
+paginate: 10
+permalink: /:year/:title/
+markdown: kramdown
+highlighter: rouge
+
+kramdown:
+  # use Github Flavored Markdown
+  input: GFM
+  # do not replace newlines by <br>s
+  hard_wrap: false
+
+gems: ['jekyll-paginate']
+exclude: ['README.md', 'Gemfile', 'Gemfile.lock', 'screenshot.png']

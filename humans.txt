@@ -1,0 +1,14 @@
+/* TEAM */
+Developer & Designer: TPS Cash
+Twitter: @tpscash
+Site: http://tpscash.github.io
+Location: Minneapolis, MN, USA
+						
+/* THANKS */
+Name: TPS Cash
+
+/* SITE */
+Last update: 2016/02/10
+Standards: HTML5, CSS3
+Components: Jekyll
+Software: Sublime Text, Photoshop
