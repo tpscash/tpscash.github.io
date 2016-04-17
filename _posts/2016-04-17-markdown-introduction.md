@@ -1,6 +1,6 @@
 ---
 title: "An Introduction to Markdown"
-date: 2016-04-16 15:20:00
+date: 2016-04-17 15:20:00 +0800
 categories: [technologies]
 tags: [markdown]
 ---

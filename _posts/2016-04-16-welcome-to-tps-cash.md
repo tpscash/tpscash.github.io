@@ -1,6 +1,6 @@
 ---
 title:  "Welcome to TPS Cash Team Blog!"
-date:   2016-04-16 15:04:23
+date:   2016-04-16 15:04:23 +0800
 categories: [home]
 tags: [home]
 ---
