@@ -300,6 +300,10 @@ Markdown支持以下这些符号前面加上反斜杠来插入为普通符号：
     String str = new String("str");
     ```
 
+```java
+String str = new String("str");
+```
+
 ### 任务列表 (Task Lists)
 
     - [x] This is a complete item
