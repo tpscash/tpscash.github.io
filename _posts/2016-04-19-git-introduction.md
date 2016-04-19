@@ -45,11 +45,11 @@ Git has three main states that your files can reside in: **committed**, **modifi
 
 ![areas](/images/posts/git/areas.png)
 
-### Get Started
+## Get Started
 
-#### ~~Install Git~~
+### ~~Install Git~~
 
-#### First-time Git Setup
+### First-time Git Setup
 
 Git comes with a tool called git config and lets you get and set configuration variables that controll all aspecs of how Git looks and operates. These variables can be stored in three different places:
 
