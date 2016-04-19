@@ -5,7 +5,7 @@ categories: [technologies]
 tags: [git]
 ---
 
-Here is a brief introduction to git quotes from [Pro Git](https://git-scm.com/book/en/v2)
+Here is a brief introduction to Git quotes from [Pro Git](https://git-scm.com/book/en/v2)
 
 ## What is Git
 
@@ -47,15 +47,15 @@ Git has three main states that your files can reside in: **committed**, **modifi
 
 ### Get Started
 
-#### Install Git
+#### ~~Install Git~~
 
 #### First-time Git Setup
 
 Git comes with a tool called git config and lets you get and set configuration variables that controll all aspecs of how Git looks and operates. These variables can be stored in three different places:
 
-1. `/etc/gitconfig`: contains values for all users. If you use `git config --system`, it reads and writes from this file specifically
+1. `/etc/gitconfig` : contains values for all users. If you use `git config --system`, it reads and writes from this file specifically
 
-2. `~/.gitconfig` or `~/.config/git/config`: Specific to yoru user. You can use `git config --global` to read and write thos this file specifically
+2. `~/.gitconfig` or `~/.config/git/config` : Specific to yoru user. You can use `git config --global` to read and write thos this file specifically
 
 3. `.git/config` in your repository: Specific to that single repository
 
