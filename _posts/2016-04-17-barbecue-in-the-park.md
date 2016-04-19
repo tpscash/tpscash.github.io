@@ -5,7 +5,7 @@ categories: [life]
 tags: [life]
 ---
 
-We've successfully had a team building activity last weekend on 10^th April.
+We've successfully had a team building activity last weekend on 10th April.
 
 Thanks for the efforts of our beloved team members:
 

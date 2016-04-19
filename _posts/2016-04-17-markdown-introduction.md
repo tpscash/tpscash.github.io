@@ -68,9 +68,9 @@ Markdown的优点有：
 
 #### This is H4
 
-##### THis is H5
+##### This is H5
 
-###### THis is H6
+###### This is H6
 
 ### <a name="paragraphs"></a>段落和换行 （Paragraphs And Line Breaks）
 
@@ -336,4 +336,5 @@ a     |b      |c
 
 * [MacDown for OSX](http://macdown.uranusjr.com/)
 * [MarkDownPad for Windows](https://markdownpad.com)
-I
+* MarkdownX for Andriod
+* ByWord for IOS

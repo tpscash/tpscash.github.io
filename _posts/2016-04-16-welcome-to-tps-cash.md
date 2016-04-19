@@ -9,7 +9,7 @@ tags: [home]
 
 Here is a fancy place for TPS Cash team to share ideas, collaborate with each other, record inspirations etc.
 
-Please stay tunned!
+Please stay tuned!
 
 To write a blog in this place, you need to know:
 
