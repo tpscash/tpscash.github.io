@@ -116,7 +116,7 @@ You can add `-a` option to `git commit` command makes Git automatically stage ev
 
 ### Moving Files
 
-If you want to rename a file use `git mv [file_from] [file_to]. It is equivalent to running something like:
+If you want to rename a file use `git mv [file_from] [file_to]`. It is equivalent to running something like:
 
     $ mv [file_from] [file_to]
     $ git rm [file_from]
@@ -134,15 +134,21 @@ If you want to see some abbreviated stats for each commit, you can use `--stat` 
 
     $ git log --stat
     $ git log --pretty=oneline
-    $ git log --pretty=format:"%h - %an, %ar " %s"
+    $ git log --pretty=format:"%h - %an, %ar : %s"
     
 ### Limiting Log Output
 
-Limit log by time-limiting options such a `--since` and ``--until`, e.g.
+Limit log by time-limiting options such a `--since` and `--until`, e.g.
 
     $ git log --since=2.weeks
     
-You can also filter the commits by search criteria. The `--author` option allows you to filter on a specific author and the `--grep` option lets you search for keywords in the commit messages. Also you can add more than one options but you have to add --all-match or the command will match commits with either. Another really helpful filter is the `-S` option which takes a string and only shows the commits that introduced a change to the code that added or removed that string. An example with multiple options:
+You can also filter the commits by search criteria. 
+
+The `--author` option allows you to filter on a specific author .
+
+And the `--grep` option lets you search for keywords in the commit messages. 
+
+Also you can add more than one options but you have to add --all-match or the command will match commits with either. Another really helpful filter is the `-S` option which takes a string and only shows the commits that introduced a change to the code that added or removed that string. An example with multiple options:
 
     $ git log --pretty="%h - %s" --author=gitster --since="2008-10-01" --before="2008-11-01" --no-merges -- t/
 
@@ -215,7 +221,7 @@ Git uses two main types of tags: lightweight and annotated.
 
 A lightweight tag is very much like a branch that doesn't change - it's just a pointer to a specific commit.
 
-A annotated tag is stored as full objects in the Git database. It is checksummed; contains the tagger name, email, and date; has a tagging message; and can be signed and verified with GNU Privacy Guard (GPG). **It is generally recommended that you create annotated tags so you can have all these information; but if you want a temporary tag or for some reason don't want to keep the other information, lightweight tags are available too.
+A annotated tag is stored as full objects in the Git database. It is checksummed; contains the tagger name, email, and date; has a tagging message; and can be signed and verified with GNU Privacy Guard (GPG). **It is generally recommended that you create annotated tags so you can have all these information**; but if you want a temporary tag or for some reason don't want to keep the other information, lightweight tags are available too.
 
 ### Annotated Tags
 
