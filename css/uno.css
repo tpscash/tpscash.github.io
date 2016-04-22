@@ -1038,7 +1038,8 @@ pre {
 	pre code {
 		padding: 0;
 		background: none;
-		border: none; }
+		border: none; 
+		color: #cccccc;}
 
 .date,
 .time,
