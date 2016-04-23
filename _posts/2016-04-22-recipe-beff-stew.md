@@ -1,12 +1,12 @@
 ---
-title: Receipt - Jiang Niu Rou
+title: Recipe - Jiang Niu Rou
 date: 2016-04-22 11:11:00 +0800
 categories: [life]
 tags: [recipe]
 author: [Yue]
 ---
 
-###程序员的菜单:酱牛肉
+程序员的菜单: 酱牛肉
 
 #### *前言*
 
