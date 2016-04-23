@@ -990,6 +990,23 @@ em {
 	font-style: italic; }
 
 blockquote {
+	margin-top: 0;
+	margin-bottom: 16px;
+	padding: 0 15px;
+	color: #777;
+	border-left: 4px solid #ddd
+}
+
+blockquote>:first-child {
+	margin-top:0
+}
+
+blockquote>:last-child {
+	margin-bottom:0
+}
+
+/*
+blockquote {
 	margin: 1em 0;
 	padding: 2em 0;
 	background: #f8f8f8;
@@ -1002,6 +1019,7 @@ blockquote {
 	text-align: center; }
 	blockquote p:last-child {
 		margin-bottom: 0; }
+*/
 
 ol, ul {
 	margin: 0 0 1.3em 2.5em; }
