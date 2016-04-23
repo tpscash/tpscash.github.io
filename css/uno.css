@@ -1177,6 +1177,27 @@ hr {
 	width: 30%;
 	margin: 2em 0;
 	border-top: 1px solid #dddddd; }
+	
+.post table {
+	display: block;
+	width: 100%;
+	word-break: normal;
+	word-break: keep-all
+}
+
+.post tr {
+	background-color: #fff;
+	broder: 1px solid #ccc
+}
+
+.post tr:nth-child(2n) {
+	background-color: #f8f8f8;
+}
+
+.post td {
+	padding:6px 13px;
+	border: 1px solid #ddd
+}
 
 .error-code {
 	font-size: 6em; }
