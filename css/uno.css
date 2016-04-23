@@ -1194,6 +1194,7 @@ hr {
 	background-color: #f8f8f8;
 }
 
+.post th,
 .post td {
 	padding:6px 13px;
 	border: 1px solid #ddd
