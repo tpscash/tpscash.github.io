@@ -1,8 +1,9 @@
 ---
 title: Git Basics
-date: 2016-04-22 10:25:00 +0800
+date: 2016-04-21 22:25:00 +0800
 categories: [technologies]
 tags: [git]
+author: [Kevin]
 ---
 
 From this article you can get some basic usage of Git.

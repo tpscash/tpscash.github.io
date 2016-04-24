@@ -3,6 +3,7 @@ title: An Introduction to Git
 date: 2016-04-19 21:55:00 +0800
 categories: [technologies]
 tags: [git]
+author: [Kevin]
 ---
 
 Here is a brief introduction to Git quotes from [Pro Git](https://git-scm.com/book/en/v2)

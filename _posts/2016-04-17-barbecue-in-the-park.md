@@ -3,6 +3,7 @@ title: "Barbecue in The Park"
 date: 2016-04-17 21:20:00 +0800
 categories: [life]
 tags: [life]
+author: [Kevin]
 ---
 
 We've successfully had a team building activity last weekend on 10th April.
