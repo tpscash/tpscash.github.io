@@ -960,24 +960,24 @@ h5 {
 
 h1 {
 	margin-top: 0;
-	font-size: 3.2em;
+	font-size: 2.25em;
 	line-height: 1.2em;
 	letter-spacing: .05em; }
 
 h2 {
-	font-size: 2.2em; }
+	font-size: 1.75em;}
 
 h3 {
-	font-size: 1.8em; }
+	font-size: 1.5em; }
 
 h4 {
-	font-size: 1.4em; }
+	font-size: 1.25em; }
 
 h4 {
-	font-size: 1.2em; }
+	font-size: 1em; }
 
 h5 {
-	font-size: 1em; }
+	font-size: 0.75em; }
 
 p {
 	margin-bottom: 1.3em;
@@ -1200,23 +1200,24 @@ hr {
 	display: block;
 	width: 100%;
 	word-break: normal;
-	word-break: keep-all
-}
+	word-break: keep-all; }
 
 .post tr {
 	background-color: #fff;
-	broder: 1px solid #ccc
-}
+	broder: 1px solid #ccc; }
 
 .post tr:nth-child(2n) {
-	background-color: #f8f8f8;
-}
+	background-color: #f8f8f8; }
 
 .post th,
 .post td {
 	padding:6px 13px;
-	border: 1px solid #ddd
-}
+	border: 1px solid #ddd; }
+
+.post h2 {
+	padding-bottom: 0.3em;
+	line-height: 1.225;
+  border-bottom: 1px solid #eee; }
 
 .error-code {
 	font-size: 6em; }
