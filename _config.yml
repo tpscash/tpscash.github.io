@@ -4,7 +4,7 @@ description: 'A sharing place for lovely TPS team'
 url: "http://tpscash.github.io"
 baseurl: "/"
 # google_analytics: 'UA-XXXXXX-X'
-# disqus_shortname: 'your-disqus-name'
+disqus_shortname: 'tpscash'
 
 author:
   name: 'TPS Cash'
