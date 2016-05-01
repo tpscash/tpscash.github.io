@@ -14,8 +14,10 @@ From this article you can get some basic usage of Git.
 
     $ cd [path_of_your_project]
     $ git init
-    $ git add -all
+    $ git add --all
     $ git commit -m "Initial commit"
+    $ git remote add origin [url_of_your_remote_repository]
+    $ git push -u origin master
     
 ### Cloning an Existing Repository
 
@@ -166,7 +168,7 @@ You can run commit with `--amend` option
     
 ### Unstaging a Staged File
 
-    $ git add -all
+    $ git add --all
     $ git reset HEAD some_unwanted_file
     
 ### Unmodifying a Modified File
