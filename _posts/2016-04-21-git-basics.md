@@ -32,6 +32,7 @@ As you edit files, the states of your files will change like below:
 ### Checking the Status of Your Files
 
     $ git status
+    
     On branch master
     Your branch is up-to-date with 'origin/master'.
     nothing to commit, working directory clean
@@ -39,7 +40,9 @@ As you edit files, the states of your files will change like below:
 ### Add a New File to Your Project
 
     $ echo 'READ ME' > README.md
+    
     $ git status
+    
     On branch master
     Your branch is up-to-date with 'origin/master'.
     Untracked files:
@@ -52,7 +55,9 @@ As you edit files, the states of your files will change like below:
 ### Tracking New Files
 
     $ git add README.md
+    
     $ git status
+    
     On branch master
     Your branch is up-to-date with 'origin/master'.
     Changes to be committed:
@@ -65,20 +70,24 @@ As you edit files, the states of your files will change like below:
 Let's say you modified a file already tracked which is named FAQ.md
 
     $ git status
+    
     On branch master
     Your branch is up-to-date with 'origin/master'.
     Changes to be committed:
         (use "git reset HEAD <file>..." to unstage)
 
-        new file:   the
+        new file:   README.md
 
     Changes not staged for commit:
         (use "git add <file>..." to update what will be committed)
         (use "git checkout -- <file>..." to discard changes in working directory)
 
                 modified:   FAQ.md
+                
     $ git add FAQ.md
+    
     $ git status
+    
     On branch master
     Your branch is up-to-date with 'origin/master'.
     Changes to be committed:
@@ -90,6 +99,7 @@ Let's say you modified a file already tracked which is named FAQ.md
 If you modified FAQ.md again, FAQ would be listed as both staged and unstaged:
 
     $ git status
+    
     On branch master
     Your branch is up-to-date with 'origin/master'.
     Changes to be committed:
@@ -121,7 +131,7 @@ You can add `-a` option to `git commit` command makes Git automatically stage ev
 
 If you want to rename a file use `git mv [file_from] [file_to]`. It is equivalent to running something like:
 
-    $ mv [file_from] [file_to]
+    $ git mv [file_from] [file_to]
     $ git rm [file_from]
     $ git add [file_to]
     

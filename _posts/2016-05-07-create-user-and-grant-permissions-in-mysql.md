@@ -46,10 +46,6 @@ Once you have finalized the permissions that you want to set up for the user, al
     FLUSH PRIVILEGES;
     
 Your changes will now be in effect.
-
-If you want to delete a user:
-
-    DORP USER 'kevin'@'localhost'
     
 To test your new user, log out and log back in with the commands in terminal:
 
@@ -57,10 +53,14 @@ To test your new user, log out and log back in with the commands in terminal:
     
     mysql -u kevin -p
     
+If you want to delete a user:
+
+    DORP USER 'kevin'@'localhost'
+    
 Just list the syntax again:
 
-    GRANT [type of permissions] ON [database name].[table name] TO '[username]'@'hostname'
+    GRANT [type of permissions] ON [database name].[table name] TO '[username]'@'[hostname]'
     
-    REVOKE [type of permissions] on [database name].[table name] FROM '[username]'@'hostname'
+    REVOKE [type of permissions] on [database name].[table name] FROM '[username]'@'[hostname]'
     
     DROP USER '[username]'@;'[hostname]'
