@@ -17,7 +17,7 @@ This commit object contains the author's name and email, the message that you ty
 Let's take an example:
 
     $ git add REAME.md FAQ.md LICENSE
-    $ git commit -m "The intial commit of my project"
+    $ git commit -m "The initial commit of my project"
     
 After running `git commit`, Git checksums each subdirectory and stores those tree objects in the Git repository. Now your Git repository has 5 objects: one blob for each of your 3 files, one tree that lists the contents of the directory and specifies which file names are stored as which blob, and one commit with the pointer to that root tree and all the commit metadata.
 
@@ -33,7 +33,7 @@ If you make some changes and commit again, the next commit stores a pointer to t
 
 ### Creating a New Branch
 
-What happens if you create a new branch? Well, doing so **creates a new pointer** for you to move aournd. Let's say you create a new branch called testing. You do this with the `git branch` command:
+What happens if you create a new branch? Well, doing so **creates a new pointer** for you to move around. Let's say you create a new branch called testing. You do this with the `git branch` command:
 
     $ git branch testing
     

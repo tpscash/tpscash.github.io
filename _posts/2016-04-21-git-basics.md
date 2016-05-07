@@ -62,7 +62,7 @@ As you edit files, the states of your files will change like below:
 
 ### Staging Modified Files
 
-Let's say you modified a file alreay tracked which is named FAQ.md
+Let's say you modified a file already tracked which is named FAQ.md
 
     $ git status
     On branch master
@@ -70,7 +70,7 @@ Let's say you modified a file alreay tracked which is named FAQ.md
     Changes to be committed:
         (use "git reset HEAD <file>..." to unstage)
 
-        new file:   README.md
+        new file:   the
 
     Changes not staged for commit:
         (use "git add <file>..." to update what will be committed)

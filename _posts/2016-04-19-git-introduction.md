@@ -52,15 +52,15 @@ Git has three main states that your files can reside in: **committed**, **modifi
 
 ### First-time Git Setup
 
-Git comes with a tool called git config and lets you get and set configuration variables that controll all aspecs of how Git looks and operates. These variables can be stored in three different places:
+Git comes with a tool called git config and lets you get and set configuration variables that control all aspects of how Git looks and operates. These variables can be stored in three different places:
 
 1. `/etc/gitconfig` : contains values for all users. If you use `git config --system`, it reads and writes from this file specifically
 
-2. `~/.gitconfig` or `~/.config/git/config` : Specific to yoru user. You can use `git config --global` to read and write thos this file specifically
+2. `~/.gitconfig` or `~/.config/git/config` : Specific to your user. You can use `git config --global` to read and write this file specifically
 
 3. `.git/config` in your repository: Specific to that single repository
 
-**Each level overrides valus in the previous level**
+**Each level overrides values in the previous level**
 
 ### Your Identify
 
