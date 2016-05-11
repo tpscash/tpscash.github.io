@@ -21,17 +21,17 @@ author: [Shirui]
 客户端用到的手段，只能是HTTP协议。具体来说，就是HTTP协议里面，四个表示操作方式的动词：GET、POST、PUT、DELETE。
 它们分别对应四种基本操作：GET用来获取资源，POST用来新建资源（也可以用于更新资源），PUT用来更新资源，DELETE用来删除资源。
 
-No.|HTTP Method|	URI	Operation	 | Operation               |Type
----|-----------|---------------------|------------------------------------------
-1  |GET	       |/UserService/users	 |  Get list of users	   |Read Only
----|-----------|---------------------|------------------------------------------
-2  |GET	       |/UserService/users/1 |	Get User with Id 1	   |Read Only
----|-----------|---------------------|------------------------------------------
-3  |PUT	       |/UserService/users/2 |	Insert User with Id 2  |Idempotent
----|-----------|---------------------|------------------------------------------
-4  |POST	   |/UserService/users/2 |	Update User with Id 2  |N/A
----|-----------|---------------------|------------------------------------------
-5  |DELETE	   |/UserService/users/1 |	Delete User with Id 1  |Idempotent
+|No.|HTTP Method|	URI	Operation	 | Operation               |Type            |
+|---|-----------|--------------------|-------------------------|----------------|
+|1  |GET	    |/UserService/users	 |  Get list of users	   |Read Only       |
+|---|-----------|--------------------|-------------------------|----------------|
+|2  |GET	    |/UserService/users/1|	Get User with Id 1	   |Read Only       |
+|---|-----------|--------------------|-------------------------|----------------|
+|3  |PUT	    |/UserService/users/2|	Insert User with Id 2  |Idempotent      |
+|---|-----------|--------------------|-------------------------|----------------|
+|4  |POST	    |/UserService/users/2|	Update User with Id 2  |N/A             |
+|---|-----------|--------------------|-------------------------|----------------|
+|5  |DELETE	    |/UserService/users/1|	Delete User with Id 1  |Idempotent      |
 
 ### Message
 RESTful web services make use of HTTP protocol as a medium of communication between client and server.
@@ -42,7 +42,9 @@ Let's have a look on HTTP Request and HTTP Response messages for HTTP 1.1.
 * HTTP Request
 
 A HTTP Request has five major parts:
+
 ![request](/images/posts/api/http_request.jpg)
+
 + Verb- Indicate HTTP methods such as GET, POST, DELETE, PUT etc.
 + URI- Uniform Resource Identifier (URI) to identify the resource on server
 + HTTP Version- Indicate HTTP version, for example HTTP v1.1 .
@@ -52,7 +54,9 @@ A HTTP Request has five major parts:
 
 * HTTP Response
 A HTTP Response has four major parts:
+
 ![response](/images/posts/api/http_response.jpg)
+
 + Status/Response Code - Indicate Server status for the requested resource. For example 404 means resource not found and 200 means response is ok.
 + HTTP Version - Indicate HTTP version, for example HTTP v1.1 .
 + Response Header - Contains metadata for the HTTP Response message as key-value pairs. For example, content length, content type, response date, server type etc.
@@ -82,27 +86,27 @@ For example, session maintained by server is identified by session identifier pa
 + Web services need to get extra information in each request and then interpret to get the client's state in case client interactions are to be taken care of.
 
 ### HTTP Code:
-NO.|HTTP Code                | Description
----|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------
-1  |200 OK                   | shows success.
----|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------
-2  |201 CREATED              | when a resource is successful created using POST or PUT request. Return link to newly created resource using location header.
----|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------
-3  |204 NO CONTENT           | when response body is empty for example, a DELETE request.
----|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------
-4  |304 NOT MODIFIED         | used to reduce network bandwidth usage in case of conditional GET requests. Response body should be empty. Headers should have date, location etc.
----|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------
-5  |400 BAD REQUEST          | states that invalid input is provided e.g. validation error, missing data.
----|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------
-6  |401 UNAUTHORIZED         | states that user is using invalid or wrong authentication token.
----|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------
-7  |403 FORBIDDEN            | states that user is not having access to method being used for example, delete access without admin rights.
----|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------
-8  |404 NOT FOUND            | states that method is not available.
----|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------
-9  |409 CONFLICT             | states conflict situation while executing the method for example, adding duplicate entry.
----|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------
-10 |500 INTERNAL SERVER ERROR| states that server has thrown some exception while executing the method.
+|NO.|HTTP Code                | Description
+|---|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+|1  |200 OK                   | shows success.                                                                                                                                       |
+|---|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+|2  |201 CREATED              | when a resource is successful created using POST or PUT request. Return link to newly created resource using location header.                        |
+|---|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+|3  |204 NO CONTENT           | when response body is empty for example, a DELETE request.                                                                                           |
+|---|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+|4  |304 NOT MODIFIED         | used to reduce network bandwidth usage in case of conditional GET requests. Response body should be empty. Headers should have date, location etc.   |
+|---|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+|5  |400 BAD REQUEST          | states that invalid input is provided e.g. validation error, missing data.                                                                           |
+|---|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+|6  |401 UNAUTHORIZED         | states that user is using invalid or wrong authentication token.                                                                                     |
+|---|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+|7  |403 FORBIDDEN            | states that user is not having access to method being used for example, delete access without admin rights.                                          |
+|---|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+|8  |404 NOT FOUND            | states that method is not available.                                                                                                                 |
+|---|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+|9  |409 CONFLICT             | states conflict situation while executing the method for example, adding duplicate entry.                                                            |
+|---|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+|10 |500 INTERNAL SERVER ERROR| states that server has thrown some exception while executing the method.                                                                             |
 
 
 Wiki for all status:[HTTP STATUS CODE](http://www.restapitutorial.com/httpstatuscodes.html)
