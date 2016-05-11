@@ -6,7 +6,7 @@ tags: [API]
 author: [Shirui]
 ---
 
-## REST（英文：Representational State Transfer，简称REST）
+## REST（Representational State Transfer）
 
 ### Resources
 "表现层"其实指的是"资源"（Resources）的"表现层"。
@@ -33,6 +33,31 @@ No.|HTTP Method|	URI	Operation	 | Operation               |Type
 ---|-----------|---------------------|------------------------------------------
 5  |DELETE	   |/UserService/users/1 |	Delete User with Id 1  |Idempotent
 
+### Message
+RESTful web services make use of HTTP protocol as a medium of communication between client and server.
+A client sends a message in form of a HTTP Request and server responds in form of a HTTP Response.
+This technique is termed as Messaging. These messages contain message data and metadata i.e. information about message itself.
+Let's have a look on HTTP Request and HTTP Response messages for HTTP 1.1.
+
+* HTTP Request
+
+A HTTP Request has five major parts:
+![request](/images/posts/api/http_request.jpg)
++ Verb- Indicate HTTP methods such as GET, POST, DELETE, PUT etc.
++ URI- Uniform Resource Identifier (URI) to identify the resource on server
++ HTTP Version- Indicate HTTP version, for example HTTP v1.1 .
++ Request Header- Contains metadata for the HTTP Request message as key-value pairs. For example, client ( or browser) type, format supported by client, format of message body, cache settings etc.
++ Request Body- Message content or Resource representation.
+
+
+* HTTP Response
+A HTTP Response has four major parts:
+![response](/images/posts/api/http_response.jpg)
++ Status/Response Code - Indicate Server status for the requested resource. For example 404 means resource not found and 200 means response is ok.
++ HTTP Version - Indicate HTTP version, for example HTTP v1.1 .
++ Response Header - Contains metadata for the HTTP Response message as key-value pairs. For example, content length, content type, response date, server type etc.
++ Response Body - Response message content or Resource representation.
+
 ### Addressing
 
 Constructing a standard URI
@@ -49,34 +74,34 @@ As per REST architecture, a RESTful web service should not keep a client state o
 This restriction is called statelessness. It is responsibility of the client to pass its context to server and then server can store this context to process client's further request.
 For example, session maintained by server is identified by session identifier passed by the client.
 
-### Advantages of Statelessness
-Web services can treat each method request independently.
-Web services need not to maintain client's previous interactions. It simplifies application design.
-As HTTP is itself a statelessness protocol, RESTful Web services work seamlessly with HTTP protocol.
-Disadvantages of Statelessness
-Web services need to get extra information in each request and then interpret to get the client's state in case client interactions are to be taken care of.
+* Advantages of Statelessness
++ Web services can treat each method request independently.
++ Web services need not to maintain client's previous interactions. It simplifies application design.
++ As HTTP is itself a statelessness protocol, RESTful Web services work seamlessly with HTTP protocol.
+* Disadvantages of Statelessness
++ Web services need to get extra information in each request and then interpret to get the client's state in case client interactions are to be taken care of.
 
 ### HTTP Code:
 NO.|HTTP Code                | Description
----|-------------------------|------------------------------------------------------------------------------------------------
+---|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------
 1  |200 OK                   | shows success.
----|-------------------------|------------------------------------------------------------------------------------------------
+---|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------
 2  |201 CREATED              | when a resource is successful created using POST or PUT request. Return link to newly created resource using location header.
----|-------------------------|------------------------------------------------------------------------------------------------
+---|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------
 3  |204 NO CONTENT           | when response body is empty for example, a DELETE request.
----|-------------------------|------------------------------------------------------------------------------------------------
+---|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------
 4  |304 NOT MODIFIED         | used to reduce network bandwidth usage in case of conditional GET requests. Response body should be empty. Headers should have date, location etc.
----|-------------------------|------------------------------------------------------------------------------------------------
+---|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------
 5  |400 BAD REQUEST          | states that invalid input is provided e.g. validation error, missing data.
----|-------------------------|------------------------------------------------------------------------------------------------
+---|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------
 6  |401 UNAUTHORIZED         | states that user is using invalid or wrong authentication token.
----|-------------------------|------------------------------------------------------------------------------------------------
+---|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------
 7  |403 FORBIDDEN            | states that user is not having access to method being used for example, delete access without admin rights.
----|-------------------------|------------------------------------------------------------------------------------------------
+---|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------
 8  |404 NOT FOUND            | states that method is not available.
----|-------------------------|------------------------------------------------------------------------------------------------
+---|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------
 9  |409 CONFLICT             | states conflict situation while executing the method for example, adding duplicate entry.
----|-------------------------|------------------------------------------------------------------------------------------------
+---|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------
 10 |500 INTERNAL SERVER ERROR| states that server has thrown some exception while executing the method.
 
 
