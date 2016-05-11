@@ -139,3 +139,8 @@ A handful SQL which can help you to diagnose your oracle database.
            ||' compute statistics;'
       FROM USER_INDEXES
      WHERE INDEX_NAME NOT LIKE 'SYS%';
+	 
+
+### Test a String for a Numeric Value
+
+	SELECT LENGTH(TRIM(TRANSLATE('string', ' +-.0123456789', ' '))) from dual;
