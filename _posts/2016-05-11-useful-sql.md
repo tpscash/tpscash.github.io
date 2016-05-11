@@ -117,3 +117,25 @@ A handful SQL which can help you to diagnose your oracle database.
 	   WHERE COLUMN_NAME = 'FOREIGN_KEY_NAME'
 		 AND TABLE_NAME NOT IN
 			 (SELECT TABLE_NAME FROM USER_IND_COLUMNS WHERE COLUMN_NAME = 'FOREIGN_KEY_NAME') ;
+			 
+### Recompute Statistics
+
+    SELECT 'analyze table '||TABLE_NAME||' delete statistics; ' FROM USER_TABLES;
+    
+    SELECT 'analyze table '||TABLE_NAME||' compute statistics;' FROM USER_TABLES;
+    
+    SELECT 'alter index '
+           || INDEX_NAME
+           ||' rebuild tablespace '
+           || TABLESPACE_NAME
+           ||' compute statistics;'
+      FROM USER_INDEXES
+     WHERE INDEX_NAME NOT LIKE 'SYS%';
+     
+    SELECT 'alter index '
+           ||TABLE_OWNER
+           ||'.'
+           ||INDEX_NAME
+           ||' compute statistics;'
+      FROM USER_INDEXES
+     WHERE INDEX_NAME NOT LIKE 'SYS%';
