@@ -33,16 +33,18 @@ A handful SQL which can help you to diagnose your oracle database.
 	 
 ### Find Top 10 SQL with Bad Performance
 
-	SELECT *
-	  FROM (SELECT PARSING_USER_ID,
-				   EXECUTIONS,
-				   SORTS,
-				   COMMAND_TYPE,
-				   DISK_READS,
-				   SQL_TEXT
-			  FROM V$SQLAREA
-			 ORDER BY DISK_READS DESC)
-	 WHERE ROWNUM < 10;
+    SELECT *
+      FROM
+           (SELECT PARSING_USER_ID,
+                    EXECUTIONS,
+                    SORTS,
+                    COMMAND_TYPE,
+                    DISK_READS,
+                    SQL_TEXT
+               FROM V$SQLAREA
+           ORDER BY DISK_READS DESC
+           )
+     WHERE ROWNUM < 10;
 	 
 ### Find SQL with Heavy IO
 
@@ -97,14 +99,14 @@ A handful SQL which can help you to diagnose your oracle database.
 	   
 ### Find Last SQL Executed By a Session
 
-	SELECT
-		  /*+ ORDERED USE_NL(st) */
-		  SQL_TEXT  
-	 FROM V$SESSION SES,
-	      V$SQLTEXT ST
-	WHERE ST.ADDRESS    = SES.SQL_ADDRESS
-	  AND ST.HASH_VALUE = SES.SQL_HASH_VALUE
-	  AND SES.USERNAME  = 'YOUR_USER_NAME'
+    SELECT
+           /*+ ORDERED USE_NL(st) */
+           SQL_TEXT  
+      FROM V$SESSION SES,
+           V$SQLTEXT ST
+     WHERE ST.ADDRESS    = SES.SQL_ADDRESS
+       AND ST.HASH_VALUE = SES.SQL_HASH_VALUE
+       AND SES.USERNAME  = 'YOUR_USER_NAME'
     ORDER BY PIECE;
 	
 	
