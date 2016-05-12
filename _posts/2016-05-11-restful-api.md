@@ -192,10 +192,10 @@ OAuth 2.0的运行流程如下图
 
 客户端必须得到用户的授权（authorization grant），才能获得令牌（access token）。
 OAuth 2.0定义了四种授权方式。
-  + 授权码模式（authorization code）
-  + 简化模式（implicit）
-  + 密码模式（resource owner password credentials）
-  + 客户端模式（client credentials）
+  +授权码模式（authorization code）
+  +简化模式（implicit）
+  +密码模式（resource owner password credentials）
+  +客户端模式（client credentials）
 
   授权码模式
 
