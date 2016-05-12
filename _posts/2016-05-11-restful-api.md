@@ -119,32 +119,35 @@ Following are the headers which a server response can have in order to configure
 | 4   | Expires          | Expiration date and time of caching.                                            |
 | 5   | Age              | Duration in seconds from when resource was fetched from the server.             |
 
-当资源第一次被访问的时候，HTTP头部如下
-(Request-Line)  GET /a.html HTTP/1.1
-Host    127.0.0.1
-User-Agent  Mozilla/5.0 (X11; U; Linux i686; zh-CN; rv:1.9.0.15) Gecko/2009102815 Ubuntu/9.04 (jaunty) Firefox/3.0.15
-Accept              text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language     zh-cn,zh;q=0.5
-Accept-Encoding     gzip,deflate
-Accept-Charset      gb2312,utf-8;q=0.7,;q=0.7
-Keep-Alive          300
-Connection          keep-alive
+当资源第一次被访问的时候，HTTP头部如下:
+
+    (Request-Line)  GET /a.html HTTP/1.1
+    Host    127.0.0.1
+    User-Agent  Mozilla/5.0 (X11; U; Linux i686; zh-CN; rv:1.9.0.15) Gecko/2009102815 Ubuntu/9.04 (jaunty) Firefox/3.0.15
+    Accept              text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language     zh-cn,zh;q=0.5
+    Accept-Encoding     gzip,deflate
+    Accept-Charset      gb2312,utf-8;q=0.7,;q=0.7
+    Keep-Alive          300
+    Connection          keep-alive
+
 HTTP返回头部如下
-(Status-Line)       HTTP/1.1 200 OK
-Date                Thu, 26 Nov 2009 13:50:54 GMT
-Server              Apache/2.2.11 (Unix) PHP/5.2.9
-Last-Modified       Thu, 26 Nov 2009 13:50:19 GMT
-Etag                “8fb8b-14-4794674acdcc0″
-Accept-Ranges       bytes
-Content-Length      20
-Keep-Alive          timeout=5, max=100
-Connection          Keep-Alive
-Content-Type        text/html
+
+    (Status-Line)       HTTP/1.1 200 OK
+    Date                Thu, 26 Nov 2009 13:50:54 GMT
+    Server              Apache/2.2.11 (Unix) PHP/5.2.9
+    Last-Modified       Thu, 26 Nov 2009 13:50:19 GMT
+    Etag                “8fb8b-14-4794674acdcc0″
+    Accept-Ranges       bytes
+    Content-Length      20
+    Keep-Alive          timeout=5, max=100
+    Connection          Keep-Alive
+    Content-Type        text/html
 
 当资源第一次被访问的时候，http返回200的状态码，并在头部携带上当前资源的一些描述信息，如
-Last-Modified      // 指示最后修改的时间
-Etag                // 指示资源的状态唯一标识
-Expires             // 指示资源在浏览器缓存中的过期时间
+*Last-Modified      // 指示最后修改的时间
+*Etag                // 指示资源的状态唯一标识
+*Expires             // 指示资源在浏览器缓存中的过期时间
 
 接着浏览器会将文件缓存到Cache目录下，并同时保存文件的上述信息
 当第二次请求该文件时，浏览器会先检查Cache目录下是否含有该文件，
@@ -156,60 +159,55 @@ If-None-Match       ”8fb8b-14-4794674acdcc0″
 服务器在接收到这个请求的时候，先解析Header里头的信息，然后校验该头部信息。
 如果该文件从上次时间到现在都没有过修改或者Etag信息没有变化，则服务端将直接返回一个304的状态，而不再返回文件资源，状态头部如下
 
-(Status-Line)       HTTP/1.1 304 Not Modified
-Date                Thu, 26 Nov 2009 14:09:07 GMT
-Server              Apache/2.2.11 (Unix) PHP/5.2.9
-Connection          Keep-Alive
-Keep-Alive          timeout=5, max=100
-Etag                “8fb8b-14-4794674acdcc0″
+    (Status-Line)       HTTP/1.1 304 Not Modified
+    Date                Thu, 26 Nov 2009 14:09:07 GMT
+    Server              Apache/2.2.11 (Unix) PHP/5.2.9
+    Connection          Keep-Alive
+    Keep-Alive          timeout=5, max=100
+    Etag                “8fb8b-14-4794674acdcc0″
 
 ### Security
 
-    As RESTful web services work with HTTP URLs Paths so it is very important to safeguard a RESTful web service in the same manner as a website is be secured. Following are the best practices to be followed while designing a RESTful web service.
+As RESTful web services work with HTTP URLs Paths so it is very important to safeguard a RESTful web service in the same manner as a website is be secured. Following are the best practices to be followed while designing a RESTful web service.
 
-    * Validation - Validate all inputs on the server. Protect your server against SQL or NoSQL injection attacks.
+* Validation - Validate all inputs on the server. Protect your server against SQL or NoSQL injection attacks.
+* Session based authentication - Use session based authentication to authenticate a user whenever a request is made to a Web Service method.
+* No sensitive data in URL - Never use username, password or session token in URL , these values should be passed to Web Service via POST method.
+* Restriction on Method execution - Allow restricted use of methods like GET, POST, DELETE. GET method should not be able to delete data.
+* Validate Malformed XML/JSON - Check for well formed input passed to a web service method.
+* Throw generic Error Messages - A web service method should use HTTP error messages like 403 to show access forbidden etc.
 
-    * Session based authentication - Use session based authentication to authenticate a user whenever a request is made to a Web Service method.
+oauth for API authentication
 
-    * No sensitive data in URL - Never use username, password or session token in URL , these values should be passed to Web Service via POST method.
+OAuth 2.0的运行流程如下图
 
-    * Restriction on Method execution - Allow restricted use of methods like GET, POST, DELETE. GET method should not be able to delete data.
+![request](/images/posts/api/oauth_flow.jpg)
 
-    * Validate Malformed XML/JSON - Check for well formed input passed to a web service method.
+（A）用户打开客户端以后，客户端要求用户给予授权。
+（B）用户同意给予客户端授权。
+（C）客户端使用上一步获得的授权，向认证服务器申请令牌。
+（D）认证服务器对客户端进行认证以后，确认无误，同意发放令牌。
+（E）客户端使用令牌，向资源服务器申请获取资源。
+（F）资源服务器确认令牌无误，同意向客户端开放资源。
 
-    * Throw generic Error Messages - A web service method should use HTTP error messages like 403 to show access forbidden etc.
+客户端必须得到用户的授权（authorization grant），才能获得令牌（access token）。
+OAuth 2.0定义了四种授权方式。
+  + 授权码模式（authorization code）
+  + 简化模式（implicit）
+  + 密码模式（resource owner password credentials）
+  + 客户端模式（client credentials）
 
-    oauth for API authentication
+  授权码模式
 
-    OAuth 2.0的运行流程如下图
+![request](/images/posts/api/authorization_code.jpg)
 
-    ![request](/images/posts/api/oauth_flow.jpg)
+  步骤如下：
 
-        （A）用户打开客户端以后，客户端要求用户给予授权。
-        （B）用户同意给予客户端授权。
-        （C）客户端使用上一步获得的授权，向认证服务器申请令牌。
-        （D）认证服务器对客户端进行认证以后，确认无误，同意发放令牌。
-        （E）客户端使用令牌，向资源服务器申请获取资源。
-        （F）资源服务器确认令牌无误，同意向客户端开放资源。
-
-    客户端必须得到用户的授权（authorization grant），才能获得令牌（access token）。
-    OAuth 2.0定义了四种授权方式。
-        + 授权码模式（authorization code）
-        + 简化模式（implicit）
-        + 密码模式（resource owner password credentials）
-        + 客户端模式（client credentials）
-
-    授权码模式
-
-    ![request](/images/posts/api/authorization_code.jpg)
-
-    步骤如下：
-        （A）用户访问客户端，后者将前者导向认证服务器。
-        （B）用户选择是否给予客户端授权。
-        （C）假设用户给予授权，认证服务器将用户导向客户端事先指定的"重定向URI"（redirection URI），同时附上一个授权码。
-        （D）客户端收到授权码，附上早先的"重定向URI"，向认证服务器申请令牌。这一步是在客户端的后台的服务器上完成的，对用户不可见。
-        （E）认证服务器核对了授权码和重定向URI，确认无误后，向客户端发送访问令牌（access token）和更新令牌（refresh token）。
-
+  （A）用户访问客户端，后者将前者导向认证服务器。
+  （B）用户选择是否给予客户端授权。
+  （C）假设用户给予授权，认证服务器将用户导向客户端事先指定的"重定向URI"（redirection URI），同时附上一个授权码。
+  （D）客户端收到授权码，附上早先的"重定向URI"，向认证服务器申请令牌。这一步是在客户端的后台的服务器上完成的，对用户不可见。
+  （E）认证服务器核对了授权码和重定向URI，确认无误后，向客户端发送访问令牌（access token）和更新令牌（refresh token）。
 
 Introduction of Oauth2 : [Oauth2](http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html)
 Wiki for all status: [HTTP STATUS CODE](http://www.restapitutorial.com/httpstatuscodes.html)
