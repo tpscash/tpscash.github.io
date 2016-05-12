@@ -45,11 +45,11 @@ Let's have a look on HTTP Request and HTTP Response messages for HTTP 1.1.
 
 	![request](/images/posts/api/http_request.jpg)
 
-+ Verb- Indicate HTTP methods such as GET, POST, DELETE, PUT etc.
-+ URI- Uniform Resource Identifier (URI) to identify the resource on server
-+ HTTP Version- Indicate HTTP version, for example HTTP v1.1 .
-+ Request Header- Contains metadata for the HTTP Request message as key-value pairs. For example, client ( or browser) type, format supported by client, format of message body, cache settings etc.
-+ Request Body- Message content or Resource representation.
+	+ Verb- Indicate HTTP methods such as GET, POST, DELETE, PUT etc.
+	+ URI- Uniform Resource Identifier (URI) to identify the resource on server
+	+ HTTP Version- Indicate HTTP version, for example HTTP v1.1 .
+	+ Request Header- Contains metadata for the HTTP Request message as key-value pairs. For example, client ( or browser) type, format supported by client, format of message body, cache settings etc.
+	+ Request Body- Message content or Resource representation.
 
 
 * HTTP Response
@@ -58,10 +58,10 @@ Let's have a look on HTTP Request and HTTP Response messages for HTTP 1.1.
 
 	![response](/images/posts/api/http_response.jpg)
 
-+ Status/Response Code - Indicate Server status for the requested resource. For example 404 means resource not found and 200 means response is ok.
-+ HTTP Version - Indicate HTTP version, for example HTTP v1.1 .
-+ Response Header - Contains metadata for the HTTP Response message as key-value pairs. For example, content length, content type, response date, server type etc.
-+ Response Body - Response message content or Resource representation.
+	+ Status/Response Code - Indicate Server status for the requested resource. For example 404 means resource not found and 200 means response is ok.
+	+ HTTP Version - Indicate HTTP version, for example HTTP v1.1 .
+	+ Response Header - Contains metadata for the HTTP Response message as key-value pairs. For example, content length, content type, response date, server type etc.
+	+ Response Body - Response message content or Resource representation.
 
 ### Addressing
 
