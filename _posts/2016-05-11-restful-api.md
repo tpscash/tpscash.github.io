@@ -181,7 +181,7 @@ oauth for API authentication
 
 OAuth 2.0的运行流程如下图
 
-![request](/images/posts/api/oauth_flow.png)
+  ![oauthFlow](/images/posts/api/oauth_flow.png)
 
     （A）用户打开客户端以后，客户端要求用户给予授权。
     （B）用户同意给予客户端授权。
@@ -199,7 +199,7 @@ OAuth 2.0定义了四种授权方式。
 
   授权码模式
 
-![request](/images/posts/api/authorization_code.png)
+  ![authorizationCode](/images/posts/api/authorization_code.png)
 
   步骤如下：
 
