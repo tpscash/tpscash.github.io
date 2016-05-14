@@ -28,8 +28,8 @@ Here is an article to introduce what REST is all about.
 |---- |-------------|----------------------|-----------------------|------------|
 | 1   | GET	        | /UserService/users   | Get list of users	   | Read Only  |
 | 2   | GET	        | /UserService/users/1 | Get User with Id 1	   | Read Only  |
-| 3   | PUT	        | /UserService/users/2 | Upate User with Id 2  | Idempotent |
-| 3   | PATCH	    | /UserService/users/2 | Upate partial attribute of User with Id 2  | Idempotent |
+| 3   | PUT	        | /UserService/users/2 | Update User with Id 2  | Idempotent |
+| 3   | PATCH	    | /UserService/users/2 | Update partial attribute of User with Id 2  | Idempotent |
 | 4   | POST	    | /UserService/users/2 | Insert User with Id 2 | N/A        |
 | 5   | DELETE	    | /UserService/users/1 | Delete User with Id 1 | Idempotent |
 
@@ -145,9 +145,9 @@ HTTP返回头部如下
     Content-Type        text/html
 
 当资源第一次被访问的时候，http返回200的状态码，并在头部携带上当前资源的一些描述信息，如
-*Last-Modified      // 指示最后修改的时间
-*Etag                // 指示资源的状态唯一标识
-*Expires             // 指示资源在浏览器缓存中的过期时间
+* Last-Modified      // 指示最后修改的时间
+* Etag                // 指示资源的状态唯一标识
+* Expires             // 指示资源在浏览器缓存中的过期时间
 
 接着浏览器会将文件缓存到Cache目录下，并同时保存文件的上述信息
 当第二次请求该文件时，浏览器会先检查Cache目录下是否含有该文件，
@@ -177,7 +177,7 @@ As RESTful web services work with HTTP URLs Paths so it is very important to saf
 * Validate Malformed XML/JSON - Check for well formed input passed to a web service method.
 * Throw generic Error Messages - A web service method should use HTTP error messages like 403 to show access forbidden etc.
 
-oauth for API authentication
+OAuth for API authentication
 
 OAuth 2.0的运行流程如下图
 
@@ -209,5 +209,5 @@ OAuth 2.0定义了四种授权方式。
     （D）客户端收到授权码，附上早先的"重定向URI"，向认证服务器申请令牌。这一步是在客户端的后台的服务器上完成的，对用户不可见。
     （E）认证服务器核对了授权码和重定向URI，确认无误后，向客户端发送访问令牌（access token）和更新令牌（refresh token）。
 
-Introduction of Oauth2 : [Oauth2](http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html)
+Introduction of OAuth2 : [Oauth2](http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html)
 Wiki for all status: [HTTP STATUS CODE](http://www.restapitutorial.com/httpstatuscodes.html)
