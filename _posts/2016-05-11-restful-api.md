@@ -145,6 +145,7 @@ HTTP返回头部如下
     Content-Type        text/html
 
 当资源第一次被访问的时候，http返回200的状态码，并在头部携带上当前资源的一些描述信息，如
+
 * Last-Modified      // 指示最后修改的时间
 * Etag                // 指示资源的状态唯一标识
 * Expires             // 指示资源在浏览器缓存中的过期时间
