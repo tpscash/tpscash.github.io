@@ -32,6 +32,6 @@ Replace `$` with words you want to add
 
 ### Replace Value for a Tag in XML
 
-For example, If you want replace <TagName>Value</TagName> with <TagName>Value_New</TagName>
+For example, If you want replace `<TagName>Value</TagName>` with `<TagName>Value_New</TagName>`
 
 Replace `(<TagName>)(.*)(</TagName>)` with `$1$2_New$3`
