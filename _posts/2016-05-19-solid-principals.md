@@ -11,7 +11,7 @@ S.O.L.I.D is an acronym for the **first five object-oriented design principles**
 S.O.L.I.D stands for:
 
 | Principle | Description                       | Comment |
-|:---------:|:---------------------------------:|:-------:|
+|:---------:|:---------------------------------:|---------|
 | SRP       |  Single-responsibility Principle  | A class should have one and only one reason to change, meaning that a class should have only on job |
 | OCP       |  Open-closed Principle            | Objects or entities should be open for extension, but closed for modification, meaning that a class should be easily extendable without modifying the class itself |
 | LSP       |  Liskov Substitution Principle    | Let q(x) be a property provable about objects of x of type T. Then q(y) should be provable for objects y of type S where S is a subtype of T, meaning that every subclass / derived class should be substitutable for their base / parent class |
