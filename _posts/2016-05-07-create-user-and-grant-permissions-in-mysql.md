@@ -3,7 +3,7 @@ title: Create a New User and Grant Permissions in MySQL
 date: 2016-05-07 16:40:00 +0800
 categories: [technologies]
 tags: [mysql,sql,database]
-author: [Kevin]
+author: Kevin
 ---
 
 This is a brief tutorial about creating user and grant permissions in MySQL

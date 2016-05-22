@@ -3,7 +3,7 @@ title: Do You Know These Windows Shortcuts
 date: 2016-05-05 15:00:00 +0800
 categories: [technologies]
 tags: [Windows]
-author: [Kevin]
+author: Kevin
 ---
 
 Shortcuts can ease your life

@@ -3,7 +3,7 @@ title: Regex in Text Editor
 date: 2016-05-16 13:40:00 +0800
 categories: [technologies]
 tags: [regex]
-author: [Kevin]
+author: Kevin
 ---
 
 A few tips of Regex which can improve your efficiency on processing texts.

@@ -3,7 +3,7 @@ title: "Diagnose High CPU Java Process on Linux"
 date: 2016-04-18 22:30:00 +0800
 categories: [technologies]
 tags: [java]
-author: [Kevin]
+author: Kevin
 ---
 
 If you are running into issue with java process with high CPU utilization, just do below simple steps to get some clue:

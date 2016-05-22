@@ -3,7 +3,7 @@ title:  "Welcome to TPS Cash Team Blog!"
 date:   2016-04-16 15:04:23 +0800
 categories: [home]
 tags: [home]
-author: [Kevin]
+author: Kevin
 ---
 
 **Welcome to TPS Cash team blog!**

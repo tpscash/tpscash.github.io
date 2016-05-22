@@ -3,7 +3,7 @@ title: "Suppress Startup Sound on Mac OSX"
 date: 2016-04-18 22:05:00 +0800
 categories: [technologies]
 tags: [Mac]
-author: [Kevin]
+author: Kevin
 ---
 
 Are you constantly scared by the startup sound when you start your Mac or feel awkward when the sound annoys people around you when you use your Mac in a public place? Here are two scripts that can save you - one mute the Mac when log out OSX and the other one unmute your Mac after you log in. 

@@ -3,7 +3,7 @@ title: Git Basics
 date: 2016-04-21 22:25:00 +0800
 categories: [technologies]
 tags: [git]
-author: [Kevin]
+author: Kevin
 ---
 
 From this article you can get some basic usage of Git.

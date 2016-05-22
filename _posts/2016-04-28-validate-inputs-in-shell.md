@@ -3,7 +3,7 @@ title: Validate Inputs in Shell Script
 date: 2016-04-30 14:55:00 +0800
 categories: [technologies]
 tags: [shell,linux]
-author: [Kevin]
+author: Kevin
 ---
 
 When you create a shell script which requires some parameters as inputs, it is necessary to validate the parameters are recognizable by the script.

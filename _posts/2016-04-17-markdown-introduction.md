@@ -3,7 +3,7 @@ title: "An Introduction to Markdown"
 date: 2016-04-17 15:20:00 +0800
 categories: [technologies]
 tags: [markdown]
-author: [Kevin]
+author: Kevin
 ---
 
 An introduction to Markdown (Chinese version)

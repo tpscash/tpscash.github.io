@@ -3,7 +3,7 @@ title: Find Out Your Java Heap Size
 date: 2016-05-16 13:40:00 +0800
 categories: [technologies]
 tags: [jvm]
-author: [Kevin]
+author: Kevin
 ---
 
 In the [oracle memory management whitepaper](http://www.oracle.com/technetwork/java/javase/memorymanagement-whitepaper-150215.pdf), it states:

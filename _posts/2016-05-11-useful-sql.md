@@ -3,7 +3,7 @@ title: Useful SQL
 date: 2016-05-11 11:10:00 +0800
 categories: [technologies]
 tags: [sql,oracle]
-author: [Kevin]
+author: Kevin
 ---
 
 A handful SQL which can help you to diagnose your oracle database.

@@ -3,7 +3,7 @@ title: PCRE - Perl Compatible Regular Expression
 date: 2016-05-05 12:00:00 +0800
 categories: [technologies]
 tags: [regex]
-author: [Kevin]
+author: Kevin
 ---
 
 A list of PCRE syntax:

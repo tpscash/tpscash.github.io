@@ -3,7 +3,7 @@ title: Regex - Delete Lines Does not Contain Certain Keyword
 date: 2016-05-04 17:15:00 +0800
 categories: [technologies]
 tags: [regex]
-author: [Kevin]
+author: Kevin
 ---
 
 

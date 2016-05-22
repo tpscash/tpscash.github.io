@@ -3,7 +3,7 @@ title: Create Restricted User for SSH Tunneling
 date: 2016-04-27 22:40:00 +0800
 categories: [technologies]
 tags: [ssh,linux]
-author: [Kevin]
+author: Kevin
 ---
 
 For safety purpose, you can create a user without login for SSH tunneling.

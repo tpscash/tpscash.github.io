@@ -3,7 +3,7 @@ title: Maven Dependency Mechanism
 date: 2016-05-08 13:40:00 +0800
 categories: [technologies]
 tags: [maven]
-author: [Kevin]
+author: Kevin
 ---
 
 Transitive dependencies are a new feature since Maven 2.0.

@@ -3,7 +3,7 @@ title: Git Branching
 date: 2016-04-22 10:50:00 +0800
 categories: [technologies]
 tags: [git]
-author: [Kevin]
+author: Kevin
 ---
 
 Git Branches in a Nutshell

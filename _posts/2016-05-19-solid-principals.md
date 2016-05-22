@@ -3,7 +3,7 @@ title: S.O.L.I.D Principles
 date: 2016-05-19 21:30:00 +0800
 categories: [technologies]
 tags: [design,principles]
-author: [Kevin]
+author: Kevin
 ---
 
 S.O.L.I.D is an acronym for the **first five object-oriented design principles** by Robert C. Martin, popularly known as Uncle Bob.

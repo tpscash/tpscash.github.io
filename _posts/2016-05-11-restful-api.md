@@ -3,7 +3,7 @@ title: RESTful-API
 date: 2016-05-11 21:00:00 +0800
 categories: [technologies]
 tags: [api,restful]
-author: [Shirui]
+author: Shirui
 ---
 
 Here is an article to introduce what REST is all about.
