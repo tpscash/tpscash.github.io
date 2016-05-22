@@ -1120,12 +1120,12 @@ pre {
 .content-wrapper {
 	z-index: 800;
 	width: 60%;
-	max-width: 800px;
+	max-width: 900px;
 	margin-left: 40%; }
 
 .content-wrapper__inner {
 	margin: 0 10%;
-	padding: 50px 0; }
+	padding: 20px 0; }
 
 .footer {
 	display: block;
