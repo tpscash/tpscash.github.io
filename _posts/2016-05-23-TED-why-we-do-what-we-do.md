@@ -1,0 +1,15 @@
+---
+author: Yue
+-----------
+
+>**Tony Robbins** discusses the **"invisible forces"** that motivate everyone's actions — and high-fives Al Gore in the front row.
+
+
+
+ **Self-motivate** is very important cheracters for personal sccuess in long term. Did you experience the moment you feel everything doesn't work right and whole world against with you? You feel despressed and don't want get off your bed. 
+
+Emotion is very important energy for life. The certainty  thing provide the positive emotion to us include safety and satisfaction, uncertain provide us the anxiety and we used call it problem.
+
+Why we do is the certainty part of our life, and what we do is the way how we should handle the uncertain thing on our way to the goal. 
+
+You will get your own answear from Tony Robbins [Why we do what we do](http://www.ted.com/talks/tony_robbins_asks_why_we_do_what_we_do)
