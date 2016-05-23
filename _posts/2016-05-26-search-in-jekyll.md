@@ -1,6 +1,6 @@
 ---
 title: Search in Jekyll
-date: 2016-05-23 22:50:00 +0800
+date: 2016-05-26 22:50:00 +0800
 categories: [technologies]
 tags: [jekyll,lunr]
 author: Kevin
