@@ -4,7 +4,7 @@ date: 2016-05-23 22:30:00 +0800
 categories: [TED]
 tags: [TED]
 author: Yue
------------
+---
 
 >**Tony Robbins** discusses the **"invisible forces"** that motivate everyone's actions — and high-fives Al Gore in the front row.
 
