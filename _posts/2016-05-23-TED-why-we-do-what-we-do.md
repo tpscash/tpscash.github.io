@@ -1,4 +1,8 @@
 ---
+title: TED - Tony Robbins: Why we do, what we do
+date: 2016-05-23 22:30:00 +0800
+categories: [TED]
+tags: [TED]
 author: Yue
 -----------
 
