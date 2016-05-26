@@ -8,7 +8,7 @@ author: Kevin
 
 When you create a shell script which requires some parameters as inputs, it is necessary to validate the parameters are recognizable by the script.
 
-* Validate parameter to be a number
+* Validate parameter to be a date
 
         RET=`date -d $1 "+%Y%m%d" 2>/dev/null`
         if [ $? = 0 ]; then
@@ -18,7 +18,7 @@ When you create a shell script which requires some parameters as inputs, it is n
             exit -1
         fi
 
-* Validate parameter to be a date
+* Validate parameter to be a number
 
         RET=`expr match $1 "[0-9]*$"`
         if [ "$RET" -gt 0 ]; then
