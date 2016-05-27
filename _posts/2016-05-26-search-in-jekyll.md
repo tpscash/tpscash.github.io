@@ -131,5 +131,3 @@ The content of /js/search.js:
         });
       }
     });
-
-
