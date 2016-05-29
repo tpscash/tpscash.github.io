@@ -1,7 +1,7 @@
 ---
 title: Manipulating Strings in Shell
-date: 2016-05-29 22:30:00 +0800
-categories: [techonogies]
+date: 2016-05-29 21:20:00 +0800
+categories: [technologies]
 tags: [linux,shell,string]
 author: Kevin
 ---

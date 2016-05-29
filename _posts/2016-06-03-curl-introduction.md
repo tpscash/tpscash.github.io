@@ -1,7 +1,7 @@
 ---
 title: CURL Introduction
 date: 2016-06-03 10:30:00 +0800
-categories: [techonogies]
+categories: [technologies]
 tags: [linux,shell,curl]
 author: Kevin
 ---
@@ -61,7 +61,7 @@ The simplest format is `curl www.google.com`, and there are many useful paramete
     
     curl -X POST -d @filename http://hostname/resource # read data from file
     
-### Login with User Crendentials
+### Login with User Credentials
 
     curl -u username:password http://hostname/resource
     
