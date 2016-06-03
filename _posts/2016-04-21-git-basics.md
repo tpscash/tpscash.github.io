@@ -174,7 +174,10 @@ You can run commit with `--amend` option
     $ git commit -m "some unwanted commit"
     $ git add some_fix
     $ git commit --amend
-    
+
+### Undoing a commit
+		
+	$ git reset [revision_before_your_commit]
     
 ### Unstaging a Staged File
 
@@ -184,6 +187,16 @@ You can run commit with `--amend` option
 ### Unmodifying a Modified File
 
     $ git checkout -- some_file_you_modified
+	
+### Removing untracked 	files
+
+Check files to be removed, like "dry-run":
+
+	$ git clean -n
+
+To actually remove the untracked files use:
+	
+	$ git clean -f
     
 ## Working with Remotes
 

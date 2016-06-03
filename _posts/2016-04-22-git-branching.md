@@ -47,7 +47,7 @@ How does Git know what branch you’re currently on? It keeps a special pointer 
 
 You can check which branch you are on by:
 
-    $ git log --online --decorate
+    $ git log --oneline --decorate
     
     or
     
