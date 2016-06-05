@@ -84,7 +84,7 @@ You can also see this easily with `git log` command:
     $ git log --oneline --decorate --graph --all
     
     
-## Basic Merging
+## <a name="basic_merging"></a> Basic Merging
 
 First, let's say you're working on your project and have a couple commits already.
 
