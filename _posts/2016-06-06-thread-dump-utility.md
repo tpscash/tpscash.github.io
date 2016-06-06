@@ -1,6 +1,6 @@
 ---
 title: Thread Dump Utility
-date: 2016-06-06 23:30:00 +0800
+date: 2016-06-06 20:30:00 +0800
 categories: [technologies]
 tags: [linux,shell,thread]
 author: Kevin
