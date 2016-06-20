@@ -83,7 +83,7 @@ And I want to split the file into small pieces by the value of the first column 
     456 e   f
     456 g   h
     
-There are more samples of using awk command to split a file, which will be introduced by next post.
+There are more samples of using awk command to split a file, which will be introduced by another post [AWK - 10 Examples to Split a File into Multiple Files](/2016/awk-split-file/)
         
 
     
