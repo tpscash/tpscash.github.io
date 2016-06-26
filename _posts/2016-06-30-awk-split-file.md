@@ -1,6 +1,6 @@
 ---
 title: AWK - 10 Examples to Split a File into Multiple Files
-date: 2016-06-28 10:30:00 +0800
+date: 2016-06-30 10:30:00 +0800
 categories: [technologies]
 tags: [linux]
 author: Kevin
