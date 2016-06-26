@@ -6,7 +6,8 @@ tags: [project]
 author: Yue
 ---
 
-### This is the summary of the discussion we had this Friday.
+#### This is the summary of the discussion we had this Friday.
+
 (I promise will enhance its appearance in future. :D)
 
 ![pic.jpg](/images/posts/project/pic.jpg)
