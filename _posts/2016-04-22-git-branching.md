@@ -128,6 +128,10 @@ You’ll notice the phrase “fast-forward” in that merge. Because the commit 
 After your super-important fix is deployed, you’re ready to switch back to the work you were doing before you were interrupted. However, first you’ll delete the hotfix branch, because you no longer need it – the master branch points at the same place. You can delete it with the `-d` option to `git branch`:
 
     $ git branch -d hotfix
+	
+If you want to delete a remote branch, use below command:
+
+    $ git push origin --delete <branch_name>
     
 Now you can switch back to your work-in-progress branch on issue #53 and continue working on it.
 
