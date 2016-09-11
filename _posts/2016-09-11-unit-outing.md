@@ -25,7 +25,19 @@ In the last two days we had a great weekend at Xinchang. We visited the famous G
 
 ![food_2](/images/posts/xinchang_outing/food_2.jpg)
 
+![shirui](/images/posts/xinchang_outing/shirui.jpg)
 
+![michael](/images/posts/xinchang_outing/michael.jpg)
+
+![athen](/images/posts/xinchang_outing/athen.jpg)
+
+![athen2](/images/posts/xinchang_outing/athen2.jpg)
+
+![ningqiang](/images/posts/xinchang_outing/ningqiang.jpg)
+
+![haining](/images/posts/xinchang_outing/haining.jpg)
+
+![turnback](/images/posts/xinchang_outing/turnback.jpg)
 
 
 
