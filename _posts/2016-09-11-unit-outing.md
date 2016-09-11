@@ -23,7 +23,7 @@ In the last two days we had a great weekend at Xinchang. We visited the famous G
 
 ![food_1](/images/posts/xinchang_outing/food_1.jpg)
 
-![food_2](/images/posts/xinchang_outing/food_2)
+![food_2](/images/posts/xinchang_outing/food_2.jpg)
 
 
 
