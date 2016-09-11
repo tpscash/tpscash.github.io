@@ -15,6 +15,16 @@ In the last two days we had a great weekend at Xinchang. We visited the famous G
 
 ![team](/images/posts/xinchang_outing/team.jpg)
 
+![maitreya](/images/posts/xinchang_outing/maitreya.jpg)
+
+![relics](/images/posts/xinchang_outing/relics.jpg)
+
+![waterfall](/images/posts/xinchang_outing/waterfall.jpg)
+
+![food_1](/images/posts/xinchang_outing/food_1.jpg)
+
+![food_2](/images/posts/xinchang_outing/food_2)
+
 
 
 
