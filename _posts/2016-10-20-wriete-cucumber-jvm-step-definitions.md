@@ -10,7 +10,7 @@ author: Kevin
 
 When I started working with Cucumber JVM it took a while to get the knack of how to write nice and efficient step definitions. Being a regular expression ninja certainly helps but you can get by with a few examples which will enable you to write a wide range of Cucumber steps. Below are some I found the most useful.
 
-##Exact match
+## Exact match
 
 I know it’s a no-brainer but will get you started.
 
@@ -19,7 +19,7 @@ I know it’s a no-brainer but will get you started.
 		System.out.println("Step definition exact match");
 	}
 
-##Use anchors
+## Use anchors
 
 Remember to use anchors to mark the beginning (`^`) and end of the expression (`$`). The step definition above will match both steps below:
 
@@ -30,7 +30,7 @@ What we really want is to match the first one and get Cucumber to give us a stub
 
 	@Given("^I have a cucumber step$")
 
-Capture integers and strings
+## Capture integers and strings
 
 	@Given("^I have (\\d+) (.*) in my basket$")
 	public void i_have_in_my_basket(int number, String veg) throws Throwable {
@@ -42,7 +42,7 @@ Let’s have a look at the step definition. By using round brackets we mark part
 * \d+ matching at least one digit, d represents a digit, + is a quantifier and means one or more times; the expression is escaped with a backslash, because it also is the escape character in Java we need to escape it with another backslash and we end up with \\d+
 * .+ matching at least one character, . (dot) represents any character
 
-##Use non-capturing groups
+## Use non-capturing groups
 
 It may be useful to have a bit of flexibility and add words in the step which are not matched. This is what non-capturing groups can be used for. There is a ?: operator (question mark and colon) and if it is present at the beginning of the group it will not be mapped to method parameters.
 
@@ -58,9 +58,9 @@ This step definition will match three different steps to one step definition. No
 	Given I have a nasty cucumber step # CucumberSteps.i_have_a_X_cucumber_step()
 	Given I have a rusty cucumber step # CucumberSteps.i_have_a_X_cucumber_step()
 	
-##Singular and plural
+## Singular and plural
 
-Use ? qualifier to match words in both singular and plural. ? at the end of a word makes the last letter optional. We can also use the logical alternative operator | (pipe) to support correct grammar as well as irregular plurals which will make sentence read better.
+Use ? qualifier to match words in both singular and plural. ? at the end of a word makes the last letter optional. We can also use the logical alternative operator \| (pipe) to support correct grammar as well as irregular plurals which will make sentence read better.
 
 	@Given("^There (?:is|are) (\\d+) (?:cats?|ox|oxen) fed by (\\d+) (?:persons?|people)$")
 	public void animals_fed_by_people(int animals, int persons) throws Throwable {
