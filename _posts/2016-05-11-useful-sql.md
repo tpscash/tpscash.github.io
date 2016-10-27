@@ -96,6 +96,23 @@ A handful SQL which can help you to diagnose your oracle database.
 	   AND SW.LOCKWAIT IS NOT NULL
 	   AND SB.LOCKWAIT IS NULL
 	   AND LB.BLOCK = 1;
+	 
+	SELECT C.OWNER,
+           C.OBJECT_NAME,
+           C.OBJECT_TYPE,
+           B.USERNAME,
+           B.SID,
+           B.SERIAL#,
+           B.STATUS,
+           B.OSUSER,
+           B.MACHINE,
+           B.PROGRAM,
+           B.PROCESS
+      FROM V$LOCKED_OBJECT A,
+           V$SESSION B,
+           ALL_OBJECTS C
+     WHERE B.SID       = A.SESSION_ID
+       AND A.OBJECT_ID = C.OBJECT_ID;
 	   
 ### Find Last SQL Executed By a Session
 
