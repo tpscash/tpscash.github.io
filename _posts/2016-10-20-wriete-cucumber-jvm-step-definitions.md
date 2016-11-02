@@ -2,7 +2,7 @@
 title: Write Cucumber JVM Step Definitions
 date: 2016-10-20 17:30:00 +0800
 categories: [technology]
-tags: [git]
+tags: [cucumber]
 author: Kevin
 ---
 
