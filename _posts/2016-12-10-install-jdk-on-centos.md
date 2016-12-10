@@ -6,9 +6,11 @@ tags: [jdk,centos]
 author: Kevin
 ---
 
+A walking through to install JDK on CentOS.
+
 ## Download JDK
 
-You need to agree OTN license terms before downloading the package. So if you are using `wget` or `curl`, you need add more parameters to void only downloading a webpage instead of the real package.
+You need to agree OTN license terms before downloading the package. So if you are using `wget` or `curl`, you need to add more parameters to avoid only downloading a webpage instead of the real package.
 
 ### wget
 
