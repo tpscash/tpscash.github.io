@@ -1,7 +1,7 @@
 ---
 title: What are the Diffferences Between Double Dot and Triple Dot in Git
 date: 2016-11-02 17:30:00 +0800
-categories: [technology]
+categories: [technologies]
 tags: [git]
 author: Kevin
 ---

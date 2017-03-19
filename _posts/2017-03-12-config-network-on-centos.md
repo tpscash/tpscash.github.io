@@ -1,7 +1,7 @@
 ---
 title: How to Configure Network on CentOS
 date: 2017-03-12 11:30:00 +0800
-categories: [technology]
+categories: [technologies]
 tags: [network,centos]
 author: Kevin
 ---

@@ -1,7 +1,7 @@
 ---
 title: How to Install Java 8 on CentOS
 date: 2016-12-10 11:30:00 +0800
-categories: [technology]
+categories: [technologies]
 tags: [jdk,centos]
 author: Kevin
 ---

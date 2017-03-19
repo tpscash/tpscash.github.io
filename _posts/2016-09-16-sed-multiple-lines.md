@@ -1,7 +1,7 @@
 ---
 title: SED - Substitute Multiple Lines
 date: 2016-09-16 16:00:00 +0800
-categories: [technology]
+categories: [technologies]
 tags: [linux,sed]
 author: Kevin
 ---

@@ -1,7 +1,7 @@
 ---
 title: Build SS Server on a VPS
 date: 2016-09-20 01:00:00 +0800
-categories: [technology]
+categories: [technologies]
 tags: [centos,ss]
 author: Kevin
 ---

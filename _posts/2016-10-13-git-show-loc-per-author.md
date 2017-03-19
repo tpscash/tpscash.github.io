@@ -1,7 +1,7 @@
 ---
 title: Show LOC per Author in Git
 date: 2016-10-13 13:30:00 +0800
-categories: [technology]
+categories: [technologies]
 tags: [git]
 author: Kevin
 ---

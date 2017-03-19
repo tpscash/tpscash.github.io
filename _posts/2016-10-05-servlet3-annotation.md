@@ -1,7 +1,7 @@
 ---
 title: Servlet 3.0 Annotation
 date: 2016-10-05 16:30:00 +0800
-categories: [technology]
+categories: [technologies]
 tags: [servlet,annotation]
 author: Kevin
 ---
