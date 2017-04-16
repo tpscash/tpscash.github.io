@@ -35,11 +35,11 @@ Both ENTRYPOINT and CMD allow you to specify the startup command for an image, b
  
 * ENTRYPOINT should be used in scenarios where you want the container to behave exclusively as if it were the executable it's wrapping. That is, when you don't want or expect the user to override the executable you've specified
 
-* In an exec form ENTRYPOINT, command line arguments to docker run <image> will be appended after all elements, and will override all elements specified using CMD
+* In an exec form ENTRYPOINT, command line arguments to `docker run <image>` will be appended after all elements, and will override all elements specified using CMD
 
 * The shell form prevents any CMD or run command line arguments from being used
 
-* The disadvantage of the shell form is that your ENTRYPOINT will be started as a subcommand of /bin/sh -c, which does not pass signals. This means that the executable will not be the container’s PID 1 - and will not receive Unix signals - so your executable will not receive a SIGTERM from docker stop <container>. However, you can use `exec` before your binary in the shell form to make the executable be the container's PID 1
+* The disadvantage of the shell form is that your ENTRYPOINT will be started as a subcommand of `/bin/sh -c`, which does not pass signals. This means that the executable will not be the container’s PID 1 - and will not receive Unix signals - so your executable will not receive a SIGTERM from `docker stop <container>`. However, you can use `exec` before your binary in the shell form to make the executable be the container's PID 1
 
 ### CMD
 
@@ -47,7 +47,7 @@ Both ENTRYPOINT and CMD allow you to specify the startup command for an image, b
 
 * If the user specifies arguments to docker run then they will override the default command specified in CMD
 
-* CMD has another form: CMD \["param1","param2"] (as default parameters to ENTRYPOINT), which is used with ENTRYPOINT together 
+* CMD has another form: `CMD ["param1","param2"]` (as default parameters to ENTRYPOINT), which is used with ENTRYPOINT together 
 
 * If CMD is used to provide default arguments for the ENTRYPOINT instruction, both the CMD and ENTRYPOINT instructions should be specified with the JSON array format
 
@@ -83,7 +83,7 @@ Both CMD and ENTRYPOINT instructions define what command gets executed when runn
 
 * CMD will be overridden when running the container with alternative arguments
 
-* If you need to write a starter script for a single executable, you can ensure that the final executable receives the Unix signals by using exec and gosu commands
+* If you need to write a starter script for a single executable, you can ensure that the final executable receives the Unix signals by using `exec` and `gosu` commands
 
 * The exec form is parsed as a JSON array, which means that you must use double-quotes (“) around words not single-quotes (‘)
 
