@@ -1,5 +1,5 @@
 ---
-title: Check DB Connection Count for a Process on Linux
+title: Check DB Connection Count for Processes on Linux
 date: 2017-06-29 23:30:00 +0800
 categories: [technologies]
 tags: [linux]
