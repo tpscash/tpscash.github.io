@@ -1,0 +1,111 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="1EB8XoOl0C"><meta name="google-site-verification" content="K7thEgdLm0UfRWJ5MGdF7sCcjClSzAlxFLPv2Oz5CGM"><title> ENTRYPOINT vs. CMD in Dockerfile · TPS Cash Team Blog</title><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="ENTRYPOINT vs. CMD in Dockerfile - Kevin"><meta name="keywords"><meta name="author" content="Kevin"><link rel="short icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/bubuzou.css"><link rel="search" type="application/opensearchdescription+xml" href="http://tpscash.github.io/atom.xml" title="TPS Cash Team Blog"></head><body><header><div class="header row"> <a href="/" class="logo-link"><img src="/images/logo.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" data-hover="博文" class="nav-list-link">博文</a></li><li class="nav-list-item"><a href="/archives/" target="_self" data-hover="归档" class="nav-list-link">归档</a></li><li class="nav-list-item"><a href="/categories/live/" target="_self" data-hover="生活" class="nav-list-link">生活</a></li><li class="nav-list-item"><a href="/categories/film/" target="_self" data-hover="摄影" class="nav-list-link">摄影</a></li><li class="nav-list-item"><a href="/about/" target="_self" data-hover="关于" class="nav-list-link">关于</a></li></ul><div class="search"><a id="search_btn" href="#search"></a></div></div></header><div class="row scroll-con"><section class="container"><!-- for archive page--><div id="postAr" class="post"><article class="post-block"><h1 class="post-title">ENTRYPOINT vs. CMD in Dockerfile</h1><div class="post-info">2017-04-16<p class="visit"><i data-hk-page="current">-</i><span>次访问</span></p></div><div class="post-content"><p>Both ENTRYPOINT and CMD allow you to specify the startup command for an image, but there are subtle differences between them. There are many times where you’ll want to choose one or the other, but they can also be used together. We’ll explore the similarity and difference of the two instructions in below section.</p>
+<h2 id="Similarities"><a href="#Similarities" class="headerlink" title="Similarities"></a>Similarities</h2><ul>
+<li><p>Both the ENTRYPOINT and CMD instructions support two different forms: the shell form and the exec form</p>
+<ul>
+<li><p>When using the shell form, the specified binary is executed with an invocation of the shell using <code>/bin/sh -c</code></p>
+</li>
+<li><p>When the exec form is used the command will be executed without a shell. This means that normal shell processing does not happen e.g it will not do variable substitution</p>
+</li>
+<li><p>The exec form is preferred form for both of the two instructions.</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>The ENTRYPOINT or CMD that you specify in your Dockerfile identify the default executable for your image. However, the user has the option to override either of these values at run time</p>
+<ul>
+<li><p>We can override the default CMD by specifying an argument after the image name when starting the container: <code>docker run &lt;image name&gt; commands</code></p>
+</li>
+<li><p>The default ENTRYPOINT can be similarly overridden but it requires the use of the <code>--entrypoint</code> flag</p>
+</li>
+</ul>
+</li>
+<li><p>When multiple ENTRYPOINT or CMD specified in a Dockerfile, only the last one will take effect respectively</p>
+</li>
+</ul>
+<h2 id="Differences"><a href="#Differences" class="headerlink" title="Differences"></a>Differences</h2><h3 id="ENTRYPOINT"><a href="#ENTRYPOINT" class="headerlink" title="ENTRYPOINT"></a>ENTRYPOINT</h3><ul>
+<li><p>ENTRYPOINT command and parameters are not ignored when Docker container runs with command line parameters</p>
+</li>
+<li><p>ENTRYPOINT should be used in scenarios where you want the container to behave exclusively as if it were the executable it’s wrapping. That is, when you don’t want or expect the user to override the executable you’ve specified</p>
+</li>
+<li><p>In an exec form ENTRYPOINT, command line arguments to <code>docker run &lt;image&gt;</code> will be appended after all elements, and will override all elements specified using CMD</p>
+</li>
+<li><p>The shell form prevents any CMD or run command line arguments from being used</p>
+</li>
+<li><p>The disadvantage of the shell form is that your ENTRYPOINT will be started as a subcommand of <code>/bin/sh -c</code>, which does not pass signals. This means that the executable will not be the container’s PID 1 - and will not receive Unix signals - so your executable will not receive a SIGTERM from <code>docker stop &lt;container&gt;</code>. However, you can use <code>exec</code> before your binary in the shell form to make the executable be the container’s PID 1</p>
+</li>
+</ul>
+<h3 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h3><ul>
+<li><p>CMD instruction allows you to set a default command, which will be executed only when you run container without specifying a command</p>
+</li>
+<li><p>If the user specifies arguments to docker run then they will override the default command specified in CMD</p>
+</li>
+<li><p>CMD has another form: <code>CMD [&quot;param1&quot;,&quot;param2&quot;]</code> (as default parameters to ENTRYPOINT), which is used with ENTRYPOINT together </p>
+</li>
+<li><p>If CMD is used to provide default arguments for the ENTRYPOINT instruction, both the CMD and ENTRYPOINT instructions should be specified with the JSON array format</p>
+</li>
+</ul>
+<h2 id="Use-ENTRYPOINT-and-CMD-Together"><a href="#Use-ENTRYPOINT-and-CMD-Together" class="headerlink" title="Use ENTRYPOINT and CMD Together"></a>Use ENTRYPOINT and CMD Together</h2><p>Combining ENTRYPOINT and CMD allows you to specify the default executable for your image while also providing default arguments to that executable which may be overridden by the user</p>
+<p>Both CMD and ENTRYPOINT instructions define what command gets executed when running a container. There are few rules that describe their co-operation. The table below shows what command is executed for different ENTRYPOINT / CMD combinations:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>No ENTRYPOINT</th>
+<th>ENTRYPOINT exec_entry p1_entry</th>
+<th>ENTRYPOINT [“exec_entry”, “p1_entry”]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No CMD</td>
+<td>error, not allowed</td>
+<td>/bin/sh -c exec_entry p1_entry</td>
+<td>exec_entry p1_entry</td>
+</tr>
+<tr>
+<td>CMD [“exec_cmd”, “p1_cmd”]</td>
+<td>exec_cmd p1_cmd</td>
+<td>/bin/sh -c exec_entry p1_entry</td>
+<td>exec_entry p1_entry exec_cmd p1_cmd</td>
+</tr>
+<tr>
+<td>CMD [“p1_cmd”, “p2_cmd”]</td>
+<td>p1_cmd p2_cmd</td>
+<td>/bin/sh -c exec_entry p1_entry</td>
+<td>exec_entry p1_entry p1_cmd p2_cmd</td>
+</tr>
+<tr>
+<td>CMD exec_cmd p1_cmd</td>
+<td>/bin/sh -c exec_cmd p1_cmd</td>
+<td>/bin/sh -c exec_entry p1_entry</td>
+<td>exec_entry p1_entry /bin/sh -c exec_cmd p1_cmd</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Conclusions-and-Hints"><a href="#Conclusions-and-Hints" class="headerlink" title="Conclusions and Hints"></a>Conclusions and Hints</h2><ul>
+<li><p>The main purpose of a ENTRYPOINT is to configure a container that will run as an executable</p>
+</li>
+<li><p>The main purpose of a CMD is to provide defaults for an executing container</p>
+</li>
+<li><p>Prefer ENTRYPOINT to CMD when building executable Docker image and you need a command always to be executed. Additionally use CMD if you need to provide extra default arguments that could be overwritten from command line when docker container runs</p>
+</li>
+<li><p>Dockerfile should specify at least one of CMD or ENTRYPOINT commands</p>
+</li>
+<li><p>ENTRYPOINT should be defined when using the container as an executable</p>
+</li>
+<li><p>CMD should be used as a way of defining default arguments for an ENTRYPOINT command or for executing an ad-hoc command in a container</p>
+</li>
+<li><p>CMD will be overridden when running the container with alternative arguments</p>
+</li>
+<li><p>If you need to write a starter script for a single executable, you can ensure that the final executable receives the Unix signals by using <code>exec</code> and <code>gosu</code> commands</p>
+</li>
+<li><p>The exec form is parsed as a JSON array, which means that you must use double-quotes (“) around words not single-quotes (‘)</p>
+</li>
+</ul>
+</div></article></div><div class="right-container"><div class="widget"><div class="category"><h4>分类归档</h4><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/TED/">TED</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/framework/">framework</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/home/">home</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/life/">life</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/technologies/">technologies</a><span class="category-list-count">47</span></li></ul></div></div><div class="widget"><div class="tagcloud"><h4>标签云</h4><a href="/tags/Mac/" style="font-size: 12px;">Mac</a> <a href="/tags/TED/" style="font-size: 10px;">TED</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/annotation/" style="font-size: 10px;">annotation</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/centos/" style="font-size: 14px;">centos</a> <a href="/tags/cucumber/" style="font-size: 10px;">cucumber</a> <a href="/tags/curl/" style="font-size: 10px;">curl</a> <a href="/tags/database/" style="font-size: 12px;">database</a> <a href="/tags/design/" style="font-size: 10px;">design</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/git/" style="font-size: 18px;">git</a> <a href="/tags/home/" style="font-size: 10px;">home</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/jdk/" style="font-size: 14px;">jdk</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/jvm/" style="font-size: 10px;">jvm</a> <a href="/tags/life/" style="font-size: 14px;">life</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/lunr/" style="font-size: 10px;">lunr</a> <a href="/tags/mail/" style="font-size: 10px;">mail</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/mysql/" style="font-size: 12px;">mysql</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/nosql/" style="font-size: 10px;">nosql</a> <a href="/tags/oracle/" style="font-size: 12px;">oracle</a> <a href="/tags/principles/" style="font-size: 10px;">principles</a> <a href="/tags/project/" style="font-size: 10px;">project</a> <a href="/tags/recipe/" style="font-size: 10px;">recipe</a> <a href="/tags/regex/" style="font-size: 14px;">regex</a> <a href="/tags/restful/" style="font-size: 10px;">restful</a> <a href="/tags/sed/" style="font-size: 10px;">sed</a> <a href="/tags/servlet/" style="font-size: 10px;">servlet</a> <a href="/tags/shell/" style="font-size: 16px;">shell</a> <a href="/tags/sql/" style="font-size: 12px;">sql</a> <a href="/tags/ss/" style="font-size: 10px;">ss</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/ssl/" style="font-size: 10px;">ssl</a> <a href="/tags/string/" style="font-size: 10px;">string</a> <a href="/tags/thread/" style="font-size: 10px;">thread</a></div></div><div class="widget"><div class="recent"><h4>最近文章</h4><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/06/29/check-connection-count/">Check DB Connection Count for Processes on Linux</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/29/ssl-handshake-failure-jdk8/">SSL Handshake Failure after Upgrading to JDK 8</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/23/discover-the-mystery-of-metaspace/">Discover the Mystery of Metaspace</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/16/entrypoint-vs-cmd/">ENTRYPOINT vs. CMD in Dockerfile</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/12/config-network-on-centos/">How to Configure Network on CentOS</a></li></ul></div></div><div class="widget"><div id="arAnchorBar"></div></div></div></section></div><div class="right-menu"></div><div class="modal search-modal"><div class="input-field"><input type="text" id="search_input"><label for="search-input">搜索</label></div><div id="search_result" class="search-result"></div></div><div class="blog-overlay"></div><footer class="row"><div class="footer-con"><div class="paginator"><a href="/2017/06/23/discover-the-mystery-of-metaspace/" class="prev">PREV</a><a href="/2017/03/12/config-network-on-centos/" class="next">NEXT</a></div><!--PC和WAP自适应版--><div id="SOHUCS" sid="2017/04/16/entrypoint-vs-cmd/"> </div><script>(function() {
+    var appid = 'cyt6h19Ve'; 
+    var conf = 'prod_0b4b95efa2ecfede2ddfb5adcef8c394'; 
+    var width = window.innerWidth || document.documentElement.clientWidth; 
+    if (width < 960) { 
+    window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();</script><div class="copyright"><p>© 2016 - 2017 <a target="_blank">Kevin</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> <br> and <a href="https://github.com/Bulandent/hexo-theme-bubuzou" target="_blank">hexo-theme-bubuzou</a></p><p>闽ICP备16007301号-2</p></div><div class="totop"><i></i></div></div></footer><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script src="http://apps.bdimg.com/libs/jquery/1.8.2/jquery.min.js"></script><script src="https://cdn1.lncld.net/static/js/av-mini-0.6.10.js"></script><script src="/scripts/hit-kounter-lc-0.2.0.js"></script><script src="/scripts/arAnchor.js"></script><script src="/scripts/main.js"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
