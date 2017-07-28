@@ -3,6 +3,38 @@
   
     
     <entry>
+      <title><![CDATA[Shuangxi Outing]]></title>
+      <url>/2017/07/23/shuangxi-outing/</url>
+      <content type="html"><![CDATA[<p>We just had a fun team outing to Shuangxi this weekend. We enjoyed drifting on Saturday and it was a quite wonderful experience. </p>
+<p>There are kayaks and bamboo rafts in Shuangxi Rafting, while the former is exciting and is for two people and wooden paddles are used to drift you through the energetic waves, the latter is more relaxing. After rafting you can even take an ox cart among bamboo forests which is most certainly a different pace to raft.</p>
+<a id="more"></a>
+<p>Although the weather was quite hot (41 degree), but we really enjoyed the trip!</p>
+<p><img src="/images/posts/shuangxi_outing/all_team.jpeg" alt="Cash and GUI"></p>
+<p><img src="/images/posts/shuangxi_outing/cash_team.jpeg" alt="Cash2"></p>
+<p><img src="/images/posts/shuangxi_outing/cash_team_2.jpeg" alt="Cash2"></p>
+<p><img src="/images/posts/shuangxi_outing/boats.jpeg" alt="Boat"></p>
+<p><img src="/images/posts/shuangxi_outing/gui_team.jpeg" alt="GUI"></p>
+<p><img src="/images/posts/shuangxi_outing/beer.jpeg" alt="Beer"></p>
+<p><img src="/images/posts/shuangxi_outing/crayfish.jpeg" alt="Crayfish"></p>
+<p><img src="/images/posts/shuangxi_outing/night_snack.jpeg" alt="Snack"></p>
+]]></content>
+      
+        <categories>
+            
+            <category> life </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> outing </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Check DB Connection Count for Processes on Linux]]></title>
       <url>/2017/06/29/check-connection-count/</url>
       <content type="html"><![CDATA[<p>Do you know how many DB connections does your process obtain? How to locate the culprit process if your database server reaches its max connections limit unexpectly? It is easy to find it out on Linux just by a few commands</p>
@@ -32,6 +64,7 @@
       <title><![CDATA[SSL Handshake Failure after Upgrading to JDK 8]]></title>
       <url>/2017/06/29/ssl-handshake-failure-jdk8/</url>
       <content type="html"><![CDATA[<p>This post is for tracking the process to solve a SSL issue after JDK 8 upgrade.</p>
+<a id="more"></a>
 <h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><p>We have a component which is using PKCS12 key store as the SSL identify when connecting to an external EMS instance, code like this:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;bean name=&quot;jndiTemplate&quot; class=&quot;org.springframework.jndi.JndiTemplate&quot;&gt;</div><div class="line">   &lt;property name=&quot;environment&quot;&gt;</div><div class="line">       &lt;props&gt;</div><div class="line">           &lt;prop key=&quot;java.naming.factory.initial&quot;&gt;com.tibco.tibjms.naming.TibjmsInitialContextFactory&lt;/prop&gt;</div><div class="line">           &lt;prop key=&quot;java.naming.provider.url&quot;&gt;$&#123;ems_ssl_url&#125;&lt;/prop&gt;</div><div class="line">           &lt;prop key=&quot;com.tibco.tibjms.naming.ssl_identity&quot;&gt;$&#123;path_to_the_p12_file&#125;&lt;/prop&gt;</div><div class="line">           &lt;prop key=&quot;com.tibco.tibjms.naming.ssl_password&quot;&gt;$&#123;ssl_password&#125;&lt;/prop&gt;</div><div class="line">           &lt;prop key=&quot;com.tibco.tibjms.naming.security_protocol&quot;&gt;ssl&lt;/prop&gt;</div><div class="line">           &lt;!--&lt;prop key=&quot;com.tibco.tibjms.naming.ssl_cipher_suites&quot;&gt;RC4-MD5&lt;/prop&gt;--&gt;</div><div class="line">           &lt;prop key=&quot;com.tibco.tibjms.naming.ssl_enable_verify_host&quot;&gt;false&lt;/prop&gt;</div><div class="line">           &lt;prop key=&quot;com.tibco.tibjms.naming.ssl_enable_verify_hostname&quot;&gt;false&lt;/prop&gt;</div><div class="line">      &lt;/props&gt;</div><div class="line">   &lt;/property&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure>
 <p>This EMS connection stopped working after we upgraded to JDK 8, error in the log:</p>
@@ -97,6 +130,7 @@
       <title><![CDATA[Discover the Mystery of Metaspace]]></title>
       <url>/2017/06/23/discover-the-mystery-of-metaspace/</url>
       <content type="html"><![CDATA[<p>The JDK 8 HotSpot JVM is now using native memory for the representation of class metadata and is called Metaspace</p>
+<a id="more"></a>
 <h2 id="What-is-Metaspace"><a href="#What-is-Metaspace" class="headerlink" title="What is Metaspace"></a>What is Metaspace</h2><p>Metaspace is nothing but a replacement of our old friend PermGen (Permanent Generation) space. The main difference between PermGen and Metaspace is that Metaspace by default auto increases its size while PermGen always has a fixed maximum size. You can set a fixed maximum for Metaspace with JVM parameters, but you can’t make PermGen auto increase. By default class metadata allocation is limited by the amount of available native memory (capacity will of course depend if you use a 32-bit JVM vs. 64-bit along with OS virtual memory availability). The main purpose of Metaspace is to reduce the OOM error caused by PermGen is exhausted (although the removal of PermGen doesn’t mean that your class loader leak issues are gone).</p>
 <h2 id="What-is-Metaspace-Composed-of"><a href="#What-is-Metaspace-Composed-of" class="headerlink" title="What is Metaspace Composed of"></a>What is Metaspace Composed of</h2><p>If <code>UseCompressedOops</code> is turned on and <code>UseCompressedClassesPointers</code> is used, then two logically different areas of native memory are used for class metadata - <code>Klass Metaspace</code> &amp; <code>NoKlass Metaspace</code>. UseCompressedClassPointers uses a 32-bit offset to represent the class pointer in a 64-bit process as does UseCompressedOops for Java object references. A region (Klass Metaspace) is allocated for these compressed class pointers (the 32-bit offsets). The size of the region can be set with <code>CompressedClassSpaceSize</code> and is 1 gigabyte (GB) by default and it is just adjacent to the heap. The space for the compressed class pointers is reserved as space allocated by <code>mmap</code> at initialization and committed as needed. The <code>MaxMetaspaceSize</code> applies to the sum of the committed compressed class space and the space for the other class metadata (NoKlass Metaspace). If UseCompressedOops &amp; UseCompressedClassesPointers are turned off or <code>-Xmx</code> is set to greater than 32G, the Klass Metaspace will not exist, all Klass will be nested in NoKlass Metaspace in this case.</p>
 <p>Java Hotspot VM explicitly manages the space used for metadata. Space is requested from the OS and then divided into chunks (can be discontiguous chunks). A class loader allocates space for metadata from its chunks (a chunk is bound to a specific class loader). When classes are unloaded for a class loader, its chunks are recycled for reuse or returned to the OS. Metadata uses space allocated by <code>mmap</code>, not by <code>malloc</code>. Klass Metaspace &amp; NoKlass Metaspace are shared by all class loaders.</p>
@@ -156,6 +190,7 @@
       <title><![CDATA[ENTRYPOINT vs. CMD in Dockerfile]]></title>
       <url>/2017/04/16/entrypoint-vs-cmd/</url>
       <content type="html"><![CDATA[<p>Both ENTRYPOINT and CMD allow you to specify the startup command for an image, but there are subtle differences between them. There are many times where you’ll want to choose one or the other, but they can also be used together. We’ll explore the similarity and difference of the two instructions in below section.</p>
+<a id="more"></a>
 <h2 id="Similarities"><a href="#Similarities" class="headerlink" title="Similarities"></a>Similarities</h2><ul>
 <li><p>Both the ENTRYPOINT and CMD instructions support two different forms: the shell form and the exec form</p>
 <ul>
@@ -282,6 +317,7 @@
       <url>/2017/03/12/config-network-on-centos/</url>
       <content type="html"><![CDATA[<p>If you don’t have a UI on your CentOS system, you need to configure your network via command line. Below are the steps.</p>
 <p>You can check your network devices by <code>ip</code> command. Run <code>ip addr</code>, you will get output like below:</p>
+<a id="more"></a>
 <pre><code>1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
@@ -386,6 +422,7 @@ nameserver 8.8.4.4 #Secondary DNS
       <title><![CDATA[How to Install Java 8 on CentOS]]></title>
       <url>/2016/12/10/install-jdk-on-centos/</url>
       <content type="html"><![CDATA[<p>A walking through to install JDK on CentOS.</p>
+<a id="more"></a>
 <h2 id="Download-JDK"><a href="#Download-JDK" class="headerlink" title="Download JDK"></a>Download JDK</h2><p>You need to agree OTN license terms before downloading the package. So if you are using <code>wget</code> or <code>curl</code>, you need to add more parameters to avoid only downloading a webpage instead of the real package.</p>
 <h3 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h3><p><code>wget --no-check-certificate --no-cookies --header &quot;Cookie: oraclelicense=accept-securebackup-cookie&quot; http://download.oracle.com/otn-pub/java/jdk/8u112-b15/jdk-8u112-linux-x64.rpm</code></p>
 <h3 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h3><p><code>curl -v -j -k -L -H &quot;Cookie: oraclelicense=accept-securebackup-cookie&quot; http://download.oracle.com/otn-pub/java/jdk/8u112-b15/jdk-8u112-linux-x64.rpm &gt; jdk-8u112-linux-x64.rpm</code></p>
@@ -460,6 +497,7 @@ export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
       <url>/2016/11/02/what-are-the-differences-between-double-dot-and-triple-dot-in-git/</url>
       <content type="html"><![CDATA[<p>The double dot and triple dot have different meanings when use them in <code>git diff</code> and <code>git log</code>.</p>
 <p>The command <code>git diff</code> typically only shows you the difference between the states of the tree between exactly two points in the commit graph.</p>
+<a id="more"></a>
 <p>The <code>..</code> and <code>...</code> notations in <code>git diff</code> have the following meanings:</p>
 <p><img src="/images/posts/git/git-diff-help.png" alt="git diff"></p>
 <p><code>git diff foo..bar</code> is exactly the same as <code>git diff foo bar</code> - both will show you the difference between the tips of the two branches foo and bar. </p>
@@ -492,6 +530,7 @@ export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
       <url>/2016/10/20/wriete-cucumber-jvm-step-definitions/</url>
       <content type="html"><![CDATA[<p><a href="http://blog.czeczotka.com/2014/08/17/writing-cucumber-jvm-step-definitions/" target="_blank" rel="external">Original Link</a></p>
 <p>When I started working with Cucumber JVM it took a while to get the knack of how to write nice and efficient step definitions. Being a regular expression ninja certainly helps but you can get by with a few examples which will enable you to write a wide range of Cucumber steps. Below are some I found the most useful.</p>
+<a id="more"></a>
 <h2 id="Exact-match"><a href="#Exact-match" class="headerlink" title="Exact match"></a>Exact match</h2><p>I know it’s a no-brainer but will get you started.</p>
 <pre><code>@Given(&quot;I have a cucumber step&quot;)
 public void i_have_a_cucumber_step() throws Throwable {
@@ -635,6 +674,7 @@ $ mvn test
       <url>/2016/10/13/git-show-loc-per-author/</url>
       <content type="html"><![CDATA[<p>If you want to check how many lines of code you’ve pushed to a Git repository, you can do it by <code>git log</code>.</p>
 <p>Two ways to get the numbers, using <code>gawk</code> and <code>awk</code> repectively:</p>
+<a id="more"></a>
 <pre><code>git log --author=&quot;Kevin He&quot; --pretty=tformat: --numstat | gawk &apos;{ add += $1; subs += $2; loc += $1 - $2 } END { printf &quot;added lines: %s removed lines: %s total lines: %s\n&quot;, add, subs, loc }&apos;
 
 git log --numstat --pretty=&quot;%H&quot; --author=&quot;Kevin He&quot; | awk &apos;NF==3 {plus+=$1; minus+=$2} END {printf(&quot;+%d, -%d, %d\n&quot;, plus, minus, plus-minus)}&apos;
@@ -664,6 +704,7 @@ git log --numstat --pretty=&quot;%H&quot; --author=&quot;Kevin He&quot; | awk &a
       <url>/2016/10/05/servlet3-annotation/</url>
       <content type="html"><![CDATA[<p>Servlet 3.0 has many new features like <strong>pluggability and the extension support</strong>, <strong>asynchronous execution of processing</strong>,and <strong>a new set of annotations</strong>.</p>
 <p>And with these annotations, we can write servlet completely without web.xml.</p>
+<a id="more"></a>
 <p>You can use below annotations on your servlet or filter to achieve the same effect as you usually do in web.xml</p>
 <pre><code>@WebServlet
 
@@ -711,6 +752,7 @@ git log --numstat --pretty=&quot;%H&quot; --author=&quot;Kevin He&quot; | awk &a
       <url>/2016/09/26/json-path/</url>
       <content type="html"><![CDATA[<p>A frequently emphasized advantage of XML is the availability of plenty tools to analyze, transform and selectively extract data out of XML documents. <a href="https://en.wikipedia.org/wiki/XPath" target="_blank" rel="external">XPath</a> is one of these powerful tools.</p>
 <p>It’s time to wonder, if there is a need for something like XPath4JSON and what are the problems it can solve.</p>
+<a id="more"></a>
 <ul>
 <li><p>Data may be interactively found and extracted out of <a href="http://json.org" target="_blank" rel="external">JSON</a> structures on the client without special scripting.</p>
 </li>
@@ -1020,6 +1062,7 @@ res2:
       <title><![CDATA[Build SS Server on a VPS]]></title>
       <url>/2016/09/20/build-ss-server/</url>
       <content type="html"><![CDATA[<p>The SS proxy is proven to be faster and more stable than SSH. Here is an introduction on how to build SS server on a VPS.</p>
+<a id="more"></a>
 <h2 id="Install-SS-server"><a href="#Install-SS-server" class="headerlink" title="Install SS server:"></a>Install SS server:</h2><h3 id="Debian-Ubuntu"><a href="#Debian-Ubuntu" class="headerlink" title="Debian/Ubuntu:"></a>Debian/Ubuntu:</h3><pre><code>apt-get install python-pip
 
 pip install shadowsocks
@@ -1079,6 +1122,7 @@ ssserver -d stop
       <title><![CDATA[SED - Substitute Multiple Lines]]></title>
       <url>/2016/09/16/sed-multiple-lines/</url>
       <content type="html"><![CDATA[<p>Ususally we use SED for stream processing which process text line by line (SED reads line by line, removes any trailing new lines, places a line in a pattern space buffer, process as per the given commands and prints the pattern space.) Sometimes we need to substitute multiple lines. SED can handle such case as well.</p>
+<a id="more"></a>
 <p>For example, if we want to replace some text like below with a single word “SINGLEWORD”:</p>
 <pre><code>START
 Line 1
@@ -1147,6 +1191,7 @@ y  # transform_chars
       <title><![CDATA[Unit Outing - Xinchang]]></title>
       <url>/2016/09/11/unit-outing/</url>
       <content type="html"><![CDATA[<p>In the last two days we had a great weekend at Xinchang. We visited the famous Grand Buddha Temple and the food in the hotel were great too. We all had a great time together and looking forward to the next outing!</p>
+<a id="more"></a>
 <p><img src="/images/posts/xinchang_outing/all.jpg" alt="all"></p>
 <p><img src="/images/posts/xinchang_outing/team_color.jpg" alt="team_corlor"></p>
 <p><img src="/images/posts/xinchang_outing/team.jpg" alt="team"></p>
@@ -1183,6 +1228,7 @@ y  # transform_chars
       <title><![CDATA[Check Connections in Oracle]]></title>
       <url>/2016/08/31/check-connections-in-oracle/</url>
       <content type="html"><![CDATA[<p>To monitor the connections used in Oracle, you can use below SQL to get the data.</p>
+<a id="more"></a>
 <p>Get current connections and percentage of used connection to max connections:</p>
 <pre><code>SELECT I.INSTANCE_NAME,
        I.HOST_NAME,
@@ -1221,6 +1267,7 @@ GROUP BY MACHINE;
       <title><![CDATA[Clone a database in MySQL]]></title>
       <url>/2016/08/18/mysql-clone-database/</url>
       <content type="html"><![CDATA[<p>There are different ways to clone a database in MySQL.</p>
+<a id="more"></a>
 <h2 id="Using-mysqldbcopy"><a href="#Using-mysqldbcopy" class="headerlink" title="Using mysqldbcopy"></a>Using mysqldbcopy</h2><p>The MySQL Utilities contain the nice tool <code>mysqldbcopy</code> which by default copies a DB including all related objects (tables, views, triggers, events, procedures, functions, and database-level grants) and data from one DB server to the same or to another DB server. There are lots of options available to customize what is actually copied</p>
 <pre><code>mysqldbcopy \
     --source=root:password@localhost \
@@ -1249,6 +1296,7 @@ GROUP BY MACHINE;
       <title><![CDATA[Git Ignore Pattern]]></title>
       <url>/2016/08/06/git-ignore/</url>
       <content type="html"><![CDATA[<p>Here is an introduction to pattern format in .gitignore.</p>
+<a id="more"></a>
 <h2 id="PATTERN-FORMAT"><a href="#PATTERN-FORMAT" class="headerlink" title="PATTERN FORMAT"></a>PATTERN FORMAT</h2><ul>
 <li><p>A blank line matches no files, so it can serve as a separator for readability.</p>
 </li>
@@ -1297,6 +1345,7 @@ GROUP BY MACHINE;
       <title><![CDATA[Check Local Port Range in Linux]]></title>
       <url>/2016/07/16/check-local-port-range-in-linux/</url>
       <content type="html"><![CDATA[<p>The /proc/sys/net/ipv4/ip_local_port_range defines the local port range that is used by TCP and UDP traffic to choose the local port. You will see in the parameters of this file two numbers: The first number is the first local port allowed for TCP and UDP traffic on the server, the second is the last local port number. For high-usage systems you may change its default parameters to <code>32768-61000</code>.</p>
+<a id="more"></a>
 <p>The default setup for the ip_local_port_range parameters under Red Hat Linux is: “<code>1024 4999</code>“</p>
 <p>If you are picking up a port number for you web server or JMX port etc, you’d better choose numbers that are not in the range to avoid conflicts. For example, if your configuration for the local port range is 32768-61000, then choose number from <code>1024-32768</code> and <code>61000-65535</code>.</p>
 <p>To change the values of ip_local_port_range:</p>
@@ -1330,6 +1379,7 @@ net.ipv4.ip_local_port_range = 1024 65535
       <url>/2016/07/12/solve-mail-search-problem/</url>
       <content type="html"><![CDATA[<p>Even when you know the basics of searching in Mac’s Mail, sometimes an email message you clearly remember stubbornly stays lost. </p>
 <p>If a Mail search doesn’t display messages that you know it should - and you’ve ruled out user error such as selecting the wrong mailbox, or choosing a header instead of message contents—there are several possible causes. Which solution to use depends on whether errors occur searching message contents (the body of your message) or headers (the contents of the To, CC, BCC, From, and Subject fields).</p>
+<a id="more"></a>
 <h2 id="Problems-searching-headers"><a href="#Problems-searching-headers" class="headerlink" title="Problems searching headers"></a>Problems searching headers</h2><p>When you type a term into Mail’s Search field, you can optionally select a person, subject, or other category from a pop-up menu to create a token that Mail uses to search one or more headers alone (such as To, From, and Subject). (If you don’t explicitly select a header, or if you do but change the search token to say Entire Message, Mail searches message bodies as well as headers.) Surprisingly, Mail’s system for indexing and searching headers is separate from its system for indexing and searching message contents, so searching for header text (say, messages from a certain co-worker) could fail even if the same message is matched during a search of its contents.</p>
 <p>Mail uses a set of files collectively called the Envelope Index to index and search message headers. So, if you’re unable to find messages when searching headers, there’s a good chance the Envelope Index is having problems. The surest solution is to force Mail to rebuild the entire Envelope Index.</p>
 <p>To do this, first quit Mail. Then, in the Finder, hold down Option and choose Go -&gt; Library. Navigate to ~/Library/Mail/V2/MailData and drag the following files to the Trash: Envelope Index, Envelope Index-shm, and Envelope Index-wal. Open Mail again, and you’ll see a message that Mail has to import your messages. Click Continue and let it do so; what it’s really doing is rebuilding your Envelope Index. When this process finishes, try your search again.</p>
@@ -1369,6 +1419,7 @@ net.ipv4.ip_local_port_range = 1024 65535
       <url>/2016/07/08/no-sql-selection/</url>
       <content type="html"><![CDATA[<p>While SQL databases are insanely useful tools, their monopoly in the last decades is coming to an end. And it’s just time: I can’t even count the things that were forced into relational databases, but never really fitted them. (That being said, relational databases will always be the best for the stuff that has relations.)</p>
 <p>But, the differences between NoSQL databases are much bigger than ever was between one SQL database and another. This means that it is a bigger responsibility on <strong>software architects</strong> to choose the appropriate one for a project right at the beginning.</p>
+<a id="more"></a>
 <p>In this light, here is a <strong>comparison</strong> of <strong>Open Source</strong> NOSQL databases.</p>
 <p><img src="/images/posts/nosql/comparison.png" alt="comparison.png"></p>
 <p>NOSQL is sort of based on CAP theorem. Traditional RDBMS has high expectation on consistency, so it is weak on availability and partition tolerance. NOSQL is on the opposite, it scarifies consistency for AP.</p>
@@ -1403,6 +1454,7 @@ net.ipv4.ip_local_port_range = 1024 65535
       <title><![CDATA[Grep Duplicate Words in Text]]></title>
       <url>/2016/07/04/find-duplicate-words-in-text/</url>
       <content type="html"><![CDATA[<p>To find duplicate words in a text by grep and support non-greedy search, you need to use <code>-P</code> which uses Perl regular expression to parse the pattern.</p>
+<a id="more"></a>
 <p>Example:</p>
 <pre><code>$ echo &apos;This is a line of text text which has duplicate words words&apos; | grep -Po &apos;(\b.+)\1\b&apos;
 </code></pre><p>The output will be<br>    text text<br>    words words</p>
@@ -1429,6 +1481,7 @@ net.ipv4.ip_local_port_range = 1024 65535
       <url>/2016/06/30/awk-split-file/</url>
       <content type="html"><![CDATA[<p>A very good post from <a href="http://www.theunixschool.com/2012/06/awk-10-examples-to-split-file-into.html" target="_blank" rel="external">The Unix School</a></p>
 <p>In this article of the awk series, we will see the different scenarios in which we need to split a file into multiple files using awk. The files can be split into multiple files either based on a condition, or based on a pattern or because the file is big and hence needs to split into smaller files.</p>
+<a id="more"></a>
 <p>Sample File1:</p>
 <p>Let us consider a sample file with the following contents:</p>
 <pre><code>$ cat file1
@@ -1592,6 +1645,7 @@ TRAILER
       <title><![CDATA[Project - Something Interest]]></title>
       <url>/2016/06/26/something-interesting/</url>
       <content type="html"><![CDATA[<h4 id="This-is-the-summary-of-the-discussion-we-had-this-Friday"><a href="#This-is-the-summary-of-the-discussion-we-had-this-Friday" class="headerlink" title="This is the summary of the discussion we had this Friday."></a>This is the summary of the discussion we had this Friday.</h4><p>(I promise will enhance its appearance in future. :D)</p>
+<a id="more"></a>
 <p><img src="/images/posts/project/pic.jpg" alt="pic.jpg"></p>
 ]]></content>
       
@@ -1614,6 +1668,7 @@ TRAILER
       <title><![CDATA[How to Split Files in Linux]]></title>
       <url>/2016/06/24/how-to-split-files-in-linux/</url>
       <content type="html"><![CDATA[<p>There are many ways and many commands available to split a file in Linux - by size, by lines or by a certain pattern of the content. Here are some samples.</p>
+<a id="more"></a>
 <h2 id="SPLIT-Command"><a href="#SPLIT-Command" class="headerlink" title="SPLIT Command"></a>SPLIT Command</h2><h3 id="Usage-of-Split-Command"><a href="#Usage-of-Split-Command" class="headerlink" title="Usage of Split Command"></a>Usage of Split Command</h3><pre><code>a suffix_length
     Use suffix_length letters to form the suffix of the file name.
 
@@ -1684,6 +1739,7 @@ $ cat 456
       <title><![CDATA[Linux Find]]></title>
       <url>/2016/06/20/linux-find/</url>
       <content type="html"><![CDATA[<p>Usage of find command.</p>
+<a id="more"></a>
 <pre><code>fine -name     # Find by file name, wild-card is supported
 find -amin n   # File was last accessed n minutes ago
 find -atime n  # File was last accessed n*24 hours ago
@@ -1721,6 +1777,7 @@ n:  current time - (n + 1) * 24 ~ current time - n * 24
       <title><![CDATA[Linux RPM]]></title>
       <url>/2016/06/14/linux-rpm/</url>
       <content type="html"><![CDATA[<p>Usages of Linux rpm command.</p>
+<a id="more"></a>
 <pre><code>-ivh: 安装显示安装进度 --install--verbose--hash
 -Uvh: 升级软件包 --Update
 -qpl: 列出RPM软件包内的文件信息 [Query Package list]
@@ -1765,6 +1822,7 @@ rpm2cpio libgcc-4.1.2-55.el5.rpm | cpio -divm #[抽出文件] cpio命令中的-i
       <title><![CDATA[Git Rebasing]]></title>
       <url>/2016/06/10/git-rebasing/</url>
       <content type="html"><![CDATA[<p>In Git, there are two main ways to integrate changes from one branch into another: the merge and the rebase. Let’s see what rebasing is.</p>
+<a id="more"></a>
 <h2 id="The-Basic-Rebase"><a href="#The-Basic-Rebase" class="headerlink" title="The Basic Rebase"></a>The Basic Rebase</h2><p>Like the earlier example from <a href="/2016/git-branching/#basic_merging">Basic Merging</a>, you can see that you diverged your work and made commits on two different branches.</p>
 <p><img src="/images/posts/git/basic-rebase-1.png" alt="basic-rebase-1"></p>
 <p>The easiest way to integrate the branches, as we’ve already covered, is the <code>merge</code> command. It performs a three-way merge between the two latest branch snapshots (C3 and C4) and the most recent common ancestor of the two (C2), creating a new snapshot (and commit).</p>
@@ -1834,6 +1892,7 @@ $ git branch -d server
       <title><![CDATA[Thread Dump Utility]]></title>
       <url>/2016/06/06/thread-dump-utility/</url>
       <content type="html"><![CDATA[<p>A useful script to dump thread information:</p>
+<a id="more"></a>
 <pre><code>#!/bin/sh
 
 if [ $# -ne 1 ]; then
@@ -1917,6 +1976,7 @@ fi
       <title><![CDATA[CURL Introduction]]></title>
       <url>/2016/06/03/curl-introduction/</url>
       <content type="html"><![CDATA[<p>CURL is a powerful command in linux to access resources on internet.</p>
+<a id="more"></a>
 <h2 id="Basic-Usage"><a href="#Basic-Usage" class="headerlink" title="Basic Usage"></a>Basic Usage</h2><p>The simplest format is <code>curl www.google.com</code>, and there are many useful parameters:</p>
 <pre><code>--data DATA     HTTP POST data (H)
 
@@ -1987,6 +2047,7 @@ curl -H &quot;Content-Type: application/x-www-form-urlencoded&quot; --data &quot
 <li><a href="#substring_removal">Substring Removal</a></li>
 <li><a href="#substring_replacement">Substring Replacement</a></li>
 </ul>
+<a id="more"></a>
 <h2 id="String-Length"><a href="#String-Length" class="headerlink" title="String Length"></a><a name="string_length"></a>String Length</h2><h3 id="Get-length-of-a-string"><a href="#Get-length-of-a-string" class="headerlink" title="Get length of a string:"></a>Get length of a string:</h3><p><code>${\#string}</code></p>
 <p>Example:</p>
 <pre><code>binary=&quot;java&quot;
@@ -2086,6 +2147,7 @@ echo ${string/%abc/XYZ}
       <url>/2016/05/26/search-in-jekyll/</url>
       <content type="html"><![CDATA[<p>An introduction to use lunr.js for full-text searching in Jekyll blog.</p>
 <p>Full-text searching is possible with Jekyll. Client side search is a good technique because it’s fast for small data sets, you don’t need to use a third party and you have complete control of how the results are displayed and what data is searched. However, this method is very slow on large data sets.</p>
+<a id="more"></a>
 <p>We’ll look at an implementation using lunr.js which is a full-text search engine. Lunr.js performs search client side so we need to populate the data using JSON.</p>
 <p>We need to get our data in JSON format. Create /search_data.json with the following content:</p>
 <pre><code>{
@@ -2220,6 +2282,7 @@ echo ${string/%abc/XYZ}
 <blockquote>
 <p><strong>Tony Robbins</strong> discusses the <strong>“invisible forces”</strong> that motivate everyone’s actions — and high-fives Al Gore in the front row.</p>
 </blockquote>
+<a id="more"></a>
 <p><strong>Self-motivate</strong> is very important characters for personal success in long term. Did you experience the moment you feel everything doesn’t work right and whole world against with you? You feel depressed and don’t want get off your bed. </p>
 <p>Emotion is very important energy for life. The certainty  thing provide the positive emotion to us include safety and satisfaction, uncertain provide us the anxiety and we used call it problem.</p>
 <p>Why we do is the certainty part of our life, and what we do is the way how we should handle the uncertain thing on our way to the goal. </p>
@@ -2245,6 +2308,7 @@ echo ${string/%abc/XYZ}
       <title><![CDATA[S.O.L.I.D Principles]]></title>
       <url>/2016/05/19/solid-principals/</url>
       <content type="html"><![CDATA[<p>S.O.L.I.D is an acronym for the <strong>first five object-oriented design principles</strong> by Robert C. Martin, popularly known as Uncle Bob.</p>
+<a id="more"></a>
 <p>S.O.L.I.D stands for:</p>
 <table>
 <thead>
@@ -2302,9 +2366,40 @@ echo ${string/%abc/XYZ}
     </entry>
     
     <entry>
+      <title><![CDATA[Regex in Text Editor]]></title>
+      <url>/2016/05/16/regex-in-text-editor/</url>
+      <content type="html"><![CDATA[<p>A few tips of Regex which can improve your efficiency on processing texts.</p>
+<p>The Regex used here is PCRE.</p>
+<a id="more"></a>
+<h3 id="Delete-Empty-Lines"><a href="#Delete-Empty-Lines" class="headerlink" title="Delete Empty Lines"></a>Delete Empty Lines</h3><p>Replace <code>^[ \t]*\r\n</code> with empty string</p>
+<h3 id="Remove-Heading-Spaces-of-Each-Line"><a href="#Remove-Heading-Spaces-of-Each-Line" class="headerlink" title="Remove Heading Spaces of Each Line"></a>Remove Heading Spaces of Each Line</h3><p>Replace <code>^[ \t]+</code> with empty String</p>
+<h3 id="Remove-Trailing-Spaces-of-Each-Line"><a href="#Remove-Trailing-Spaces-of-Each-Line" class="headerlink" title="Remove Trailing Spaces of Each Line"></a>Remove Trailing Spaces of Each Line</h3><p>Replace <code>[ \t]+$</code> with empty string</p>
+<h3 id="Add-Words-to-The-Start-of-Each-Line"><a href="#Add-Words-to-The-Start-of-Each-Line" class="headerlink" title="Add Words to The Start of Each Line"></a>Add Words to The Start of Each Line</h3><p>Replace <code>^</code> with words you want to add</p>
+<h3 id="Add-Words-to-The-End-of-Each-Line"><a href="#Add-Words-to-The-End-of-Each-Line" class="headerlink" title="Add Words to The End of Each Line"></a>Add Words to The End of Each Line</h3><p>Replace <code>$</code> with words you want to add</p>
+<h3 id="Replace-Value-for-a-Tag-in-XML"><a href="#Replace-Value-for-a-Tag-in-XML" class="headerlink" title="Replace Value for a Tag in XML"></a>Replace Value for a Tag in XML</h3><p>For example, If you want replace <code>&lt;XMLTagName&gt;Value&lt;/XMLTagName&gt;</code> with <code>&lt;XMLTagName&gt;Value_New&lt;/XMLTagName&gt;</code></p>
+<p>Replace <code>(&lt;XMLTagName&gt;)(.*)(&lt;/XMLTagName&gt;)</code> with <code>$1$2_New$3</code></p>
+]]></content>
+      
+        <categories>
+            
+            <category> technologies </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> regex </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Find Out Your Java Heap Size]]></title>
       <url>/2016/05/16/find-out-your-java-heap-size/</url>
       <content type="html"><![CDATA[<p>In the <a href="http://www.oracle.com/technetwork/java/javase/memorymanagement-whitepaper-150215.pdf" target="_blank" rel="external">oracle memory management whitepaper</a>, it states:</p>
+<a id="more"></a>
 <blockquote>
 <p>On a server-class machine running either JVM (client or server) with the parallel garbage collector, the default<br>initial and maximum heap sizes are</p>
 <ul>
@@ -2339,38 +2434,10 @@ jinfo -flags [PID]
     </entry>
     
     <entry>
-      <title><![CDATA[Regex in Text Editor]]></title>
-      <url>/2016/05/16/regex-in-text-editor/</url>
-      <content type="html"><![CDATA[<p>A few tips of Regex which can improve your efficiency on processing texts.</p>
-<p>The Regex used here is PCRE.</p>
-<h3 id="Delete-Empty-Lines"><a href="#Delete-Empty-Lines" class="headerlink" title="Delete Empty Lines"></a>Delete Empty Lines</h3><p>Replace <code>^[ \t]*\r\n</code> with empty string</p>
-<h3 id="Remove-Heading-Spaces-of-Each-Line"><a href="#Remove-Heading-Spaces-of-Each-Line" class="headerlink" title="Remove Heading Spaces of Each Line"></a>Remove Heading Spaces of Each Line</h3><p>Replace <code>^[ \t]+</code> with empty String</p>
-<h3 id="Remove-Trailing-Spaces-of-Each-Line"><a href="#Remove-Trailing-Spaces-of-Each-Line" class="headerlink" title="Remove Trailing Spaces of Each Line"></a>Remove Trailing Spaces of Each Line</h3><p>Replace <code>[ \t]+$</code> with empty string</p>
-<h3 id="Add-Words-to-The-Start-of-Each-Line"><a href="#Add-Words-to-The-Start-of-Each-Line" class="headerlink" title="Add Words to The Start of Each Line"></a>Add Words to The Start of Each Line</h3><p>Replace <code>^</code> with words you want to add</p>
-<h3 id="Add-Words-to-The-End-of-Each-Line"><a href="#Add-Words-to-The-End-of-Each-Line" class="headerlink" title="Add Words to The End of Each Line"></a>Add Words to The End of Each Line</h3><p>Replace <code>$</code> with words you want to add</p>
-<h3 id="Replace-Value-for-a-Tag-in-XML"><a href="#Replace-Value-for-a-Tag-in-XML" class="headerlink" title="Replace Value for a Tag in XML"></a>Replace Value for a Tag in XML</h3><p>For example, If you want replace <code>&lt;XMLTagName&gt;Value&lt;/XMLTagName&gt;</code> with <code>&lt;XMLTagName&gt;Value_New&lt;/XMLTagName&gt;</code></p>
-<p>Replace <code>(&lt;XMLTagName&gt;)(.*)(&lt;/XMLTagName&gt;)</code> with <code>$1$2_New$3</code></p>
-]]></content>
-      
-        <categories>
-            
-            <category> technologies </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> regex </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[RESTful-API]]></title>
       <url>/2016/05/11/restful-api/</url>
       <content type="html"><![CDATA[<p>Here is an article to introduce what REST is all about.</p>
+<a id="more"></a>
 <h2 id="REST-Representational-State-Transfer"><a href="#REST-Representational-State-Transfer" class="headerlink" title="REST(Representational State Transfer)"></a>REST(Representational State Transfer)</h2><h3 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a>Resources</h3><p>“表现层”其实指的是”资源”（Resources）的”表现层”。 所谓”资源”，就是网络上的一个实体，或者说是网络上的一个具体信息。<br>它可以是一段文本、一张图片、一首歌曲、一种服务，总之就是一个具体的实在。你可以用一个URI（统一资源定位符）指向它，每种资源对应一个特定的URI。<br>要获取这个资源，访问它的URI就可以，因此URI就成了每一个资源的地址或独一无二的识别符。<br>应该在HTTP请求的头信息中用Accept和Content-Type字段指定，这两个字段才是对”表现层”的描述。</p>
 <h3 id="Representation"><a href="#Representation" class="headerlink" title="Representation"></a>Representation</h3><p>互联网通信协议HTTP协议，是一个无状态协议。这意味着，所有的状态都保存在服务器端。因此，如果客户端想要操作服务器，必须通过某种手段，让服务器端发生”状态转化” (State Transfer)。<br>而这种转化是建立在表现层之上的，所以就是”表现层状态转化”。<br>客户端用到的手段，只能是HTTP协议。具体来说，就是HTTP协议里面，四个表示操作方式的动词：GET、POST、PUT、DELETE。<br>它们分别对应四种基本操作：GET用来获取资源，POST用来新建资源（也可以用于更新资源），PUT用来更新资源，DELETE用来删除资源。</p>
 <table>
@@ -2659,6 +2726,7 @@ Etag                “8fb8b-14-4794674acdcc0″
       <title><![CDATA[Useful SQL]]></title>
       <url>/2016/05/11/useful-sql/</url>
       <content type="html"><![CDATA[<p>A handful SQL which can help you to diagnose your oracle database.</p>
+<a id="more"></a>
 <h3 id="Find-SQL-That-is-Currently-Running"><a href="#Find-SQL-That-is-Currently-Running" class="headerlink" title="Find SQL That is Currently Running"></a>Find SQL That is Currently Running</h3><pre><code>SELECT A.USERNAME, A.SID, B.SQL_TEXT, B.SQL_FULLTEXT
   FROM V$SESSION A, V$SQLAREA B
  WHERE A.SQL_ADDRESS = B.ADDRESS;
@@ -2807,6 +2875,7 @@ SELECT &apos;alter index &apos;
       <title><![CDATA[Maven Dependency Mechanism]]></title>
       <url>/2016/05/08/maven-dependency-mechanism/</url>
       <content type="html"><![CDATA[<p>Transitive dependencies are a new feature since Maven 2.0.</p>
+<a id="more"></a>
 <h2 id="Transitive-Dependencies"><a href="#Transitive-Dependencies" class="headerlink" title="Transitive Dependencies"></a>Transitive Dependencies</h2><p>It allows you to avoid needing to discover and specify the libraries that your own dependencies require, and including them automatically.</p>
 <p>There is no limit to the number of the levels that dependencies can be gathered from, and will only cause a problem if a cyclic dependency is discovered.</p>
 <p>With transitive dependencies, the graph of included libraries can quickly grow quite large. For this reason, there are some additional features that will limit which dependencies are included:</p>
@@ -2907,6 +2976,7 @@ SELECT &apos;alter index &apos;
       <title><![CDATA[Create a New User and Grant Permissions in MySQL]]></title>
       <url>/2016/05/07/create-user-and-grant-permissions-in-mysql/</url>
       <content type="html"><![CDATA[<p>This is a brief tutorial about creating user and grant permissions in MySQL</p>
+<a id="more"></a>
 <h2 id="How-to-Create-a-New-User"><a href="#How-to-Create-a-New-User" class="headerlink" title="How to Create a New User"></a>How to Create a New User</h2><p>Making a new user within the MySQL shell:</p>
 <pre><code>CREATE USER &apos;kevin&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;password123&apos;;
 </code></pre><p>If you want the new user to be able to login from any host:</p>
@@ -2968,6 +3038,7 @@ DROP USER &apos;[username]&apos;@;&apos;[hostname]&apos;
       <title><![CDATA[Do You Know These Windows Shortcuts]]></title>
       <url>/2016/05/05/windows-shortcut/</url>
       <content type="html"><![CDATA[<p>Shortcuts can ease your life</p>
+<a id="more"></a>
 <table>
 <thead>
 <tr>
@@ -3063,6 +3134,7 @@ DROP USER &apos;[username]&apos;@;&apos;[hostname]&apos;
       <title><![CDATA[PCRE - Perl Compatible Regular Expression]]></title>
       <url>/2016/05/05/perl-compatible-regex/</url>
       <content type="html"><![CDATA[<p>A list of PCRE syntax:</p>
+<a id="more"></a>
 <table>
 <thead>
 <tr>
@@ -3281,6 +3353,7 @@ DROP USER &apos;[username]&apos;@;&apos;[hostname]&apos;
       <title><![CDATA[Regex - Delete Lines Does not Contain Certain Keyword]]></title>
       <url>/2016/05/04/delete-lines-does-not-contain-a-keyword/</url>
       <content type="html"><![CDATA[<p>The fact that regex doesn’t support inverse matching is not entirely true. You can mimic this behavior by using negative look-arounds:</p>
+<a id="more"></a>
 <pre><code>^((?!gold).)*$
 </code></pre><p>The regex above will match any string, or line without a line break, not containing the (sub) string <code>&quot;gold&quot;</code>. As mentioned, this is not something regex is “good” at (or should do), but still, it is possible.</p>
 <p>And if you need to match line break chars as well, use the DOT-ALL modifier (the trailing s in the following pattern):</p>
@@ -3320,6 +3393,7 @@ index    0      1      2      3      4      5      6      7
       <title><![CDATA[Validate Inputs in Shell Script]]></title>
       <url>/2016/04/30/validate-inputs-in-shell/</url>
       <content type="html"><![CDATA[<p>When you create a shell script which requires some parameters as inputs, it is necessary to validate the parameters are recognizable by the script.</p>
+<a id="more"></a>
 <ul>
 <li><p>Validate parameter to be a date</p>
 <pre><code>RET=`date -d $1 &quot;+%Y%m%d&quot; 2&gt;/dev/null`
@@ -3370,6 +3444,7 @@ fi
       <url>/2016/04/27/create-restricted-user-for-ssh/</url>
       <content type="html"><![CDATA[<p>For safety purpose, you can create a user without login for SSH tunneling.</p>
 <p>Such user won’t have access to login the system and don’t have a home folder either. The only thing this user can do is changing the login password.</p>
+<a id="more"></a>
 <p>Commands to create a restricted user for SSH tunneling:</p>
 <pre><code>#Create user
 useradd -M -s /sbin/nologin -n username
@@ -3402,6 +3477,7 @@ userdel -r username
       <title><![CDATA[Recipe - Jiang Niu Rou]]></title>
       <url>/2016/04/23/recipe-beff-stew/</url>
       <content type="html"><![CDATA[<p>程序员的菜单: 酱牛肉</p>
+<a id="more"></a>
 <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a><em>前言</em></h4><p><strong>这次红字写在前头。鄙人自诩文人，比起本着纯良之匠心传达给大家高超技艺和美味佳肴，我更爱好传递精神污染。要是觉着我的方子能吃能做，但是废话太长不看，您就直接往下拉，千万甭犹豫，拉到出现图了下头就是菜谱。要是再碰见我说东他说西的直接请出去。</strong></p>
 <blockquote>
 <p><strong>电</strong>视剧里常看古代英雄侠客，坐在酒肆客栈之中，要上一盘酱牛肉，就着二两白酒议论刀剑江湖，好不快哉。牛肉本身含有丰富的蛋白质，维生素B6，锌，铁，氨基酸等营养成分，比猪肉更能满足人体健康的需要。中医认为牛肉主消渴，止泄，安中益气，养脾胃。消水肿，除湿气，补虚，令人强筋骨、壮健，有强身健体的功效。酱牛肉咸鲜浓郁，不肥不瘦，不柴不腻，口感丰厚，经常被切成片状当做下酒菜来食用。冬天食用酱牛肉还有暖胃驱寒的功效，是冬季进补的佳品。这是一道蒙古特色的传统菜，由于北京地区多以回族同胞经营牛羊肉，在本地以回民制的酱牛肉最为知名。</p>
@@ -3558,6 +3634,7 @@ userdel -r username
       <title><![CDATA[Git Branching]]></title>
       <url>/2016/04/22/git-branching/</url>
       <content type="html"><![CDATA[<p>Git Branches in a Nutshell</p>
+<a id="more"></a>
 <h2 id="Branches-in-a-Nutshell"><a href="#Branches-in-a-Nutshell" class="headerlink" title="Branches in a Nutshell"></a>Branches in a Nutshell</h2><p>What does Git do when you make a commit? Git stores a commit object that contains a pointer to the snapshot of the content you staged.</p>
 <p>This commit object contains the author’s name and email, the message that you typed and pointers to the commit or commits that directly came before this commit.</p>
 <p>Let’s take an example:</p>
@@ -3662,6 +3739,7 @@ $ git merge iss53
       <title><![CDATA[Git Basics]]></title>
       <url>/2016/04/21/git-basics/</url>
       <content type="html"><![CDATA[<p>From this article you can get some basic usage of Git.</p>
+<a id="more"></a>
 <h2 id="Getting-a-Git-Repository"><a href="#Getting-a-Git-Repository" class="headerlink" title="Getting a Git Repository"></a>Getting a Git Repository</h2><h3 id="Initialize-a-Repository-and-Import-a-Project-to-Git"><a href="#Initialize-a-Repository-and-Import-a-Project-to-Git" class="headerlink" title="Initialize a Repository and Import a Project to Git"></a>Initialize a Repository and Import a Project to Git</h3><pre><code>$ cd [path_of_your_project]
 $ git init
 $ git add --all
@@ -3827,6 +3905,7 @@ $ git config --global alias.last &apos;log -l HEAD&apos;
       <title><![CDATA[An Introduction to Git]]></title>
       <url>/2016/04/19/git-introduction/</url>
       <content type="html"><![CDATA[<p>Here is a brief introduction to Git quotes from <a href="https://git-scm.com/book/en/v2" target="_blank" rel="external">Pro Git</a></p>
+<a id="more"></a>
 <h2 id="What-is-Git"><a href="#What-is-Git" class="headerlink" title="What is Git"></a>What is Git</h2><p>Created in 2005, as a replacement of BitKeeper which is the previous VCS of project Linux kernel. Goals of Git:</p>
 <ul>
 <li>Speed</li>
@@ -3886,6 +3965,7 @@ user.email=kevin.he@citi.com
       <title><![CDATA[Diagnose High CPU Java Process on Linux]]></title>
       <url>/2016/04/18/diagnose-high-cpu-java-process-on-linux/</url>
       <content type="html"><![CDATA[<p>If you are running into issue with java process with high CPU utilization, just do below simple steps to get some clue:</p>
+<a id="more"></a>
 <ol>
 <li><p>Get the PID of the java process that has issue just by <code>top</code></p>
 </li>
@@ -3925,6 +4005,7 @@ user.email=kevin.he@citi.com
       <title><![CDATA[Suppress Startup Sound on Mac OSX]]></title>
       <url>/2016/04/18/suppress-startup-sound-on-macosx/</url>
       <content type="html"><![CDATA[<p>Are you constantly scared by the startup sound when you start your Mac or feel awkward when the sound annoys people around you when you use your Mac in a public place? Here are two scripts that can save you - one mute the Mac when log out OSX and the other one unmute your Mac after you log in. </p>
+<a id="more"></a>
 <p>Here are the steps:</p>
 <ul>
 <li><p>Create the script to mute the Mac: <code>sudo nano /Library/Scripts/mute.sh</code></p>
@@ -3971,6 +4052,7 @@ osascript -e &apos;set volume output muted 0&apos;
       <title><![CDATA[Barbecue in The Park]]></title>
       <url>/2016/04/17/barbecue-in-the-park/</url>
       <content type="html"><![CDATA[<p>We’ve successfully had a team building activity last weekend on 10th April.</p>
+<a id="more"></a>
 <p>Thanks for the efforts of our beloved team members:</p>
 <ul>
 <li>Yue</li>
@@ -4009,6 +4091,7 @@ osascript -e &apos;set volume output muted 0&apos;
       <title><![CDATA[An Introduction to Markdown]]></title>
       <url>/2016/04/17/markdown-introduction/</url>
       <content type="html"><![CDATA[<p>An introduction to Markdown (Chinese version)</p>
+<a id="more"></a>
 <h1 id="Markdown简介"><a href="#Markdown简介" class="headerlink" title="Markdown简介"></a>Markdown简介</h1><hr>
 <h2 id="什么是Markdown"><a href="#什么是Markdown" class="headerlink" title="什么是Markdown"></a>什么是Markdown</h2><p><strong>Markdown</strong>是一种可以使用普通文本编辑器编写的<strong>轻量级</strong>的<strong><em>标记语言</em></strong>，通过类似HTML的标记语法，它可以使普通文本具有一定的格式。Markdown语法简洁明了，容易上手，而且比纯文本更强。</p>
 <p><strong>Markdown</strong>的目标是实现<strong>易读易写</strong>，Markdown的语法由一些精挑细选的符号组成，其作用一目了然。常用的Markdown符号不超过10种，非常易于学习。</p>
@@ -4162,7 +4245,7 @@ This is reference-style link: [Google][id]
 <pre><code>&lt;http://tpscash.github.io&gt;
 &lt;tpscash@outlook.com&gt;
 </code></pre><p><a href="http://tpscash.github.io">http://tpscash.github.io</a></p>
-<p><a href="&#x6d;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#116;&#112;&#x73;&#x63;&#97;&#115;&#104;&#x40;&#111;&#117;&#x74;&#108;&#111;&#111;&#107;&#46;&#99;&#111;&#x6d;">&#116;&#112;&#x73;&#x63;&#97;&#115;&#104;&#x40;&#111;&#117;&#x74;&#108;&#111;&#111;&#107;&#46;&#99;&#111;&#x6d;</a></p>
+<p><a href="&#109;&#x61;&#x69;&#108;&#x74;&#111;&#x3a;&#x74;&#112;&#115;&#x63;&#x61;&#x73;&#x68;&#64;&#111;&#x75;&#x74;&#108;&#111;&#111;&#x6b;&#x2e;&#99;&#111;&#x6d;">&#x74;&#112;&#115;&#x63;&#x61;&#x73;&#x68;&#64;&#111;&#x75;&#x74;&#108;&#111;&#111;&#x6b;&#x2e;&#99;&#111;&#x6d;</a></p>
 <h3 id="反斜杠-（Backslash-Escapes）"><a href="#反斜杠-（Backslash-Escapes）" class="headerlink" title=" 反斜杠 （Backslash Escapes）"></a><a name="backslash"></a> 反斜杠 （Backslash Escapes）</h3><p>Markdown可以利用<code>\</code>来插入一些在Markdown语法中有特殊意义的符号，例如你想在一些文字前后加上星号，而不是想加入强调效果：</p>
 <pre><code>\*literal asterisks\*
 </code></pre><p>*literal asterisks*</p>
@@ -4239,6 +4322,7 @@ _  底线
       <content type="html"><![CDATA[<p><strong>Welcome to TPS Cash team blog!</strong></p>
 <p>Here is a fancy place for TPS Cash team to share ideas, collaborate with each other, record inspirations etc.</p>
 <p>Please stay tuned!</p>
+<a id="more"></a>
 <p>To write a blog in this place, you need to know:</p>
 <ul>
 <li><a href="https://guides.github.com/features/mastering-markdown/#intro" target="_blank" rel="external">Markdown</a></li>
