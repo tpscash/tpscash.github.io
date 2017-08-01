@@ -1,0 +1,98 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="1EB8XoOl0C"><meta name="google-site-verification" content="K7thEgdLm0UfRWJ5MGdF7sCcjClSzAlxFLPv2Oz5CGM"><title> Git Branching · TPS Cash Team Blog</title><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Git Branching - Kevin"><meta name="keywords"><meta name="author" content="Kevin"><link rel="short icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/bubuzou.css"><link rel="search" type="application/opensearchdescription+xml" href="http://tpscash.github.io/atom.xml" title="TPS Cash Team Blog"></head><body><header><div class="header row"> <a href="/" class="logo-link"><img src="/images/logo.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" data-hover="POSTS" class="nav-list-link">POSTS</a></li><li class="nav-list-item"><a href="/archives/" target="_self" data-hover="ARCHIVES" class="nav-list-link">ARCHIVES</a></li></ul><div class="search"><a id="search_btn" href="#search"></a></div></div></header><div class="row scroll-con"><section class="container"><!-- for archive page--><div id="postAr" class="post"><article class="post-block"><h1 class="post-title">Git Branching</h1><div class="post-info">2016-04-22<p class="visit"><i data-hk-page="current">-</i><span>次访问</span></p></div><div class="post-content"><p>Git Branches in a Nutshell</p>
+<a id="more"></a>
+<h2 id="Branches-in-a-Nutshell"><a href="#Branches-in-a-Nutshell" class="headerlink" title="Branches in a Nutshell"></a>Branches in a Nutshell</h2><p>What does Git do when you make a commit? Git stores a commit object that contains a pointer to the snapshot of the content you staged.</p>
+<p>This commit object contains the author’s name and email, the message that you typed and pointers to the commit or commits that directly came before this commit.</p>
+<p>Let’s take an example:</p>
+<pre><code>$ git add REAME.md FAQ.md LICENSE
+$ git commit -m &quot;The initial commit of my project&quot;
+</code></pre><p>After running <code>git commit</code>, Git checksums each subdirectory and stores those tree objects in the Git repository. Now your Git repository has 5 objects: one blob for each of your 3 files, one tree that lists the contents of the directory and specifies which file names are stored as which blob, and one commit with the pointer to that root tree and all the commit metadata.</p>
+<p><img src="/images/posts/git/commit-and-tree.png" alt="commit-and-tree"></p>
+<p>If you make some changes and commit again, the next commit stores a pointer to the commit that came immediately before it.</p>
+<p><img src="/images/posts/git/commits-and-parents.png" alt="commits-and-parents"></p>
+<p><strong>A branch in Git is simply a lightweight movable pointer to one of these commits.</strong> The default branch name is <code>master</code>. Every time you commit, it moves forward automatically.</p>
+<p><img src="/images/posts/git/branch-and-history.png" alt="branch-and-history"></p>
+<h3 id="Creating-a-New-Branch"><a href="#Creating-a-New-Branch" class="headerlink" title="Creating a New Branch"></a>Creating a New Branch</h3><p>What happens if you create a new branch? Well, doing so <strong>creates a new pointer</strong> for you to move around. Let’s say you create a new branch called testing. You do this with the <code>git branch</code> command:</p>
+<pre><code>$ git branch testing
+</code></pre><p>This creates a new pointer to the same commit you’re currently on.</p>
+<p><img src="/images/posts/git/two-branches.png" alt="two-branches"></p>
+<p>How does Git know what branch you’re currently on? It keeps a special pointer called <code>HEAD</code>. Note that this is a lot different than the concept of <code>HEAD</code> in other VCSs you may be used to, such as Subversion or CVS. In Git, this is a pointer to the local branch you’re currently on. In this case, you’re still on master. The git branch command only created a new branch – it didn’t switch to that branch.</p>
+<p><img src="/images/posts/git/head-to-master.png" alt="head-to-master"></p>
+<p>You can check which branch you are on by:</p>
+<pre><code>$ git log --oneline --decorate
+
+or
+
+$ git status
+
+or 
+
+$ git branch
+</code></pre><h3 id="Switching-Branches"><a href="#Switching-Branches" class="headerlink" title="Switching Branches"></a>Switching Branches</h3><p>To switch to the new testing branch:</p>
+<pre><code>$ git checkout testing
+</code></pre><p>This moves <code>HEAD</code> to point to the <code>testing</code> branch.</p>
+<p><img src="/images/posts/git/head-to-testing.png" alt="head-to-testing"></p>
+<p>When you made some changes on testing branch and committed your changes and switch back to master branch:</p>
+<pre><code>$ git checkout master
+</code></pre><p>That command did two things. It moved the <code>HEAD</code> pointer back to point to the master branch, and it reverted the files in your working directory back to the snapshot that master points to. This also means the changes you make from this point forward will diverge from an older version of the project. It essentially rewinds the work you’ve done in your testing branch so you can go in a different direction.</p>
+<p>It’s important to note that when you switch branches in Git, files in your working directory will change. If you switch to an older branch, your working directory will be reverted to look like it did the last time you committed on that branch. If Git cannot do it cleanly, it will not let you switch at all.</p>
+<p>When you keep switching and changing between the two branches, you project will diverge:</p>
+<p><img src="/images/posts/git/advance-master.png" alt="advance-master"></p>
+<p>You can also see this easily with <code>git log</code> command:</p>
+<pre><code>$ git log --oneline --decorate --graph --all
+</code></pre><h2 id="Basic-Merging"><a href="#Basic-Merging" class="headerlink" title=" Basic Merging"></a><a name="basic_merging"></a> Basic Merging</h2><p>First, let’s say you’re working on your project and have a couple commits already.</p>
+<p><img src="/images/posts/git/basic-branching-1.png" alt="basic-branching-1"></p>
+<p>You’ve decided that you’re going to work on issue #53 in whatever issue-tracking system your company uses. To create a branch and switch to it at the same time, you can run the <code>git checkout</code> command with the <code>-b</code> switch:</p>
+<pre><code>$ git checkout -b iss53
+Switched to a new branch &quot;iss53&quot;
+</code></pre><p>This is shorthand for:</p>
+<pre><code>$ git branch iss53
+$ git checkout iss53
+</code></pre><p>After fixing issue #53 and do some commits. Doing so moves the <code>iss53</code> branch forward:</p>
+<p><img src="/images/posts/git/basic-branching-3.png" alt="basic-branching-3"></p>
+<p>Now you get the call that there is a urgent issue, and you need to fix it immediately. With Git, you don’t have to deploy your fix along with the iss53 changes you’ve made, and you don’t have to put a lot of effort into reverting those changes before you can work on applying your fix to what is in production. All you have to do is switch back to your master branch and create a new hotfix branch:</p>
+<pre><code>$ git checkout master
+
+$ git checkout -b hotfix
+</code></pre><p>After the hotfix and do some commits:</p>
+<p><img src="/images/posts/git/basic-branching-4.png" alt="basic-branching-4"></p>
+<p>You can run your tests, make sure the hotfix is what you want, and merge it back into your master branch to deploy to production. You do this with the git merge command:</p>
+<pre><code>$ git checkout master
+
+$ git merge hotfix
+</code></pre><p>You’ll notice the phrase “fast-forward” in that merge. Because the commit C4 pointed to by the branch hotfix you merged in was directly ahead of the commit C2 you’re on, Git simply moves the pointer forward.</p>
+<p><img src="/images/posts/git/basic-branching-5.png" alt="basic-branching-5"></p>
+<p>After your super-important fix is deployed, you’re ready to switch back to the work you were doing before you were interrupted. However, first you’ll delete the hotfix branch, because you no longer need it – the master branch points at the same place. You can delete it with the <code>-d</code> option to <code>git branch</code>:</p>
+<pre><code>$ git branch -d hotfix
+</code></pre><p>If you want to delete a remote branch, use below command:</p>
+<pre><code>$ git push origin --delete &lt;branch_name&gt;
+</code></pre><p>Now you can switch back to your work-in-progress branch on issue #53 and continue working on it.</p>
+<pre><code>$ git checkout iss53
+</code></pre><p>After some subsequent changes and commits for issue #53:</p>
+<p><img src="/images/posts/git/basic-branching-6.png" alt="basic-branching-6"></p>
+<p>Suppose you’ve decided that your issue #53 work is complete and ready to be merged into your master branch. In order to do that, you’ll merge your <code>iss53</code> branch into <code>master</code>, much like you merged your <code>hotfix</code> branch earlier. All you have to do is check out the branch you wish to merge into and then run the <code>git merge</code> command:</p>
+<pre><code>$ git checkout master
+
+$ git merge iss53
+</code></pre><p>This looks a bit different than the <code>hotfix</code> merge you did earlier. In this case, your development history has diverged from some older point. Because the commit on the branch you’re on isn’t a direct ancestor of the branch you’re merging in, Git has to do some work. In this case, Git does a simple three-way merge, using the two snapshots pointed to by the branch tips and the common ancestor of the two.</p>
+<p><img src="/images/posts/git/basic-merging-1.png" alt="basic-merging-1"></p>
+<p>Instead of just moving the branch pointer forward, Git creates a new snapshot that results from this three-way merge and automatically creates a new commit that points to it. This is referred to as a merge commit, and is special in that it has more than one parent.</p>
+<p><img src="/images/posts/git/basic-merging-2.png" alt="basic-merging-2"></p>
+<h3 id="Branch-Management"><a href="#Branch-Management" class="headerlink" title="Branch Management"></a>Branch Management</h3><p>To show your current branches:</p>
+<pre><code>$ git branch
+</code></pre><p>Branch name with a prefix <code>*</code> is the current branch you are on.</p>
+<p>To see the last commit on each branch, you can run:</p>
+<pre><code>$ git branch -v
+</code></pre><p>The useful <code>--merged</code> and <code>--no-merged</code> options can filter this list to branches that you have or have not yet merged into the branch you’re currently on. To see which branches are already merged into the branch you’re on, you can run <code>git branch --merged</code>, vice versa.</p>
+</div></article></div><div class="right-container"><div class="widget"><div class="category"><h4>Categories</h4><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/TED/">TED</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/framework/">framework</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/home/">home</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/life/">life</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/technologies/">technologies</a><span class="category-list-count">47</span></li></ul></div></div><div class="widget"><div class="tagcloud"><h4>Tag Cloud </h4><a href="/tags/Mac/" style="font-size: 12px;">Mac</a> <a href="/tags/TED/" style="font-size: 10px;">TED</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/annotation/" style="font-size: 10px;">annotation</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/centos/" style="font-size: 14px;">centos</a> <a href="/tags/cucumber/" style="font-size: 10px;">cucumber</a> <a href="/tags/curl/" style="font-size: 10px;">curl</a> <a href="/tags/database/" style="font-size: 12px;">database</a> <a href="/tags/design/" style="font-size: 10px;">design</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/git/" style="font-size: 18px;">git</a> <a href="/tags/home/" style="font-size: 10px;">home</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/jdk/" style="font-size: 14px;">jdk</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/jvm/" style="font-size: 10px;">jvm</a> <a href="/tags/life/" style="font-size: 14px;">life</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/lunr/" style="font-size: 10px;">lunr</a> <a href="/tags/mail/" style="font-size: 10px;">mail</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/mysql/" style="font-size: 12px;">mysql</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/nosql/" style="font-size: 10px;">nosql</a> <a href="/tags/oracle/" style="font-size: 12px;">oracle</a> <a href="/tags/outing/" style="font-size: 10px;">outing</a> <a href="/tags/principles/" style="font-size: 10px;">principles</a> <a href="/tags/project/" style="font-size: 10px;">project</a> <a href="/tags/recipe/" style="font-size: 10px;">recipe</a> <a href="/tags/regex/" style="font-size: 14px;">regex</a> <a href="/tags/restful/" style="font-size: 10px;">restful</a> <a href="/tags/sed/" style="font-size: 10px;">sed</a> <a href="/tags/servlet/" style="font-size: 10px;">servlet</a> <a href="/tags/shell/" style="font-size: 16px;">shell</a> <a href="/tags/sql/" style="font-size: 12px;">sql</a> <a href="/tags/ss/" style="font-size: 10px;">ss</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/ssl/" style="font-size: 10px;">ssl</a> <a href="/tags/string/" style="font-size: 10px;">string</a> <a href="/tags/thread/" style="font-size: 10px;">thread</a></div></div><div class="widget"><div class="recent"><h4>Recent Posts </h4><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/07/23/shuangxi-outing/">Shuangxi Outing</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/29/check-connection-count/">Check DB Connection Count for Processes on Linux</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/29/ssl-handshake-failure-jdk8/">SSL Handshake Failure after Upgrading to JDK 8</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/23/discover-the-mystery-of-metaspace/">Discover the Mystery of Metaspace</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/16/entrypoint-vs-cmd/">ENTRYPOINT vs. CMD in Dockerfile</a></li></ul></div></div><div class="widget"><div id="arAnchorBar"></div></div></div></section></div><div class="right-menu"></div><div class="modal search-modal"><div class="input-field"><input type="text" id="search_input"><label for="search-input">搜索</label></div><div id="search_result" class="search-result"></div></div><div class="blog-overlay"></div><footer class="row"><div class="footer-con"><div class="paginator"><a href="/2016/04/23/recipe-beff-stew/" class="prev">PREV</a><a href="/2016/04/21/git-basics/" class="next">NEXT</a></div><div id="disqus_thread"><script type="text/javascript">
+var disqus_shortname = 'tpscash';
+var disqus_identifier = '2016/04/22/git-branching/';
+var disqus_title = 'Git Branching';
+var disqus_url = 'http://tpscash.github.io/2016/04/22/git-branching/';
+(function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">Blog comments powered by <span class="logo-disqus">Disqus</span></a></div><div class="copyright"><p>© 2016 - 2017 <a target="_blank">Kevin</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> <br> and <a href="https://github.com/Bulandent/hexo-theme-bubuzou" target="_blank">hexo-theme-bubuzou</a></p><p>闽ICP备16007301号-2</p></div><div class="totop"><i></i></div></div></footer><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script src="http://apps.bdimg.com/libs/jquery/1.8.2/jquery.min.js"></script><script src="https://cdn1.lncld.net/static/js/av-mini-0.6.10.js"></script><script src="/scripts/hit-kounter-lc-0.2.0.js"></script><script src="/scripts/arAnchor.js"></script><script src="/scripts/main.js"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
