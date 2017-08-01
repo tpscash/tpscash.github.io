@@ -5,7 +5,7 @@ mixin postInfo(item)
             if (is_home())
                 i(data-hk-page='http://tpscash.github.io'+url_for(item.path)) -
             else 
-                i(data-hk-page="current") -
+                i(data-hk-page="current") - 
             span Views
         if item.from && (is_home() || is_post())
             a.post-from(href=item.from target="_blank" title=item.from) 原文地址
