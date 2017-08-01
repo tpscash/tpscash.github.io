@@ -3,10 +3,10 @@ mixin postInfo(item)
         != date(item.date, 'YYYY-MM-DD')
         p.visit
             if (is_home())
-                i(data-hk-page='http://tpscash.github.io'+url_for(item.path)) -
+                i(data-hk-page='http://tpscash.github.io'+url_for(item.path)) - 
             else 
                 i(data-hk-page="current") - 
-            span Views
+            span  Views
         if item.from && (is_home() || is_post())
             a.post-from(href=item.from target="_blank" title=item.from) 原文地址
         if item.demo && ( is_home() || is_post() )
