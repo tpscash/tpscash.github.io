@@ -35,6 +35,32 @@
     </entry>
     
     <entry>
+      <title><![CDATA[Check DB Connection Count for Processes on Linux]]></title>
+      <url>/2017/06/29/check-connection-count/</url>
+      <content type="html"><![CDATA[<p>Do you know how many DB connections does your process obtain? How to locate the culprit process if your database server reaches its max connections limit unexpectly? It is easy to find it out on Linux just by a few commands</p>
+<a id="more"></a>
+<h2 id="Get-Total-Connection-Count-for-All-Processes"><a href="#Get-Total-Connection-Count-for-All-Processes" class="headerlink" title="Get Total Connection Count for All Processes"></a>Get Total Connection Count for All Processes</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netstat -ap | grep [database_host] | awk &apos;&#123;print $7&#125;&apos; | awk -F &apos;/&apos; &apos;&#123;print $1&#125;&apos; | grep -v &apos;-&apos; | sort -n | uniq -c | awk &apos;&#123;s+=$1&#125; END &#123;print s&#125;&apos;</div></pre></td></tr></table></figure>
+<h2 id="List-All-Processes-Connect-to-Database"><a href="#List-All-Processes-Connect-to-Database" class="headerlink" title="List All Processes Connect to Database"></a>List All Processes Connect to Database</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netstat -ap | grep [database_host] | awk &apos;&#123;print $7&#125;&apos; | awk -F &apos;/&apos; &apos;&#123;print $1&#125;&apos; | grep -v &apos;-&apos; | sort -n | uniq | xargs ps wwp</div></pre></td></tr></table></figure>
+<h2 id="List-Connection-Count-for-Each-Process"><a href="#List-Connection-Count-for-Each-Process" class="headerlink" title="List Connection Count for Each Process"></a>List Connection Count for Each Process</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">paste -d &apos;:&apos; &lt;(netstat -ap | grep [database_host] | awk &apos;&#123;print $7&#125;&apos; | awk -F &apos;/&apos; &apos;&#123;print $1&#125;&apos; | grep -v &apos;-&apos; | sort -n | uniq -c | awk &apos;&#123;print $1&#125;&apos;) &lt;(netstat -ap | grep [database_host] | awk &apos;&#123;print $7&#125;&apos; | awk -F &apos;/&apos; &apos;&#123;print $1&#125;&apos; | grep -v &apos;-&apos; | sort -n | uniq | xargs ps --no-headers wwp)</div></pre></td></tr></table></figure>
+<h2 id="List-Connection-Count-for-Each-Process-Simplified"><a href="#List-Connection-Count-for-Each-Process-Simplified" class="headerlink" title="List Connection Count for Each Process (Simplified)"></a>List Connection Count for Each Process (Simplified)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">paste  &lt;(netstat -ap | grep [database_host] | awk &apos;&#123;print $7&#125;&apos; | awk -F &apos;/&apos; &apos;&#123;print $1&#125;&apos; | grep -v &apos;-&apos; | sort -n | uniq -c | awk &apos;BEGIN &#123;print &quot;COUNT&quot;&#125; &#123;printf &quot;%5s\n&quot;, $1&#125;&apos;) &lt;(netstat -ap | grep [database_host] | awk &apos;&#123;print $7&#125;&apos; | awk -F &apos;/&apos; &apos;&#123;print $1&#125;&apos; | grep -v &apos;-&apos; | sort -n | uniq | xargs ps wwp |  awk &apos;&#123;printf &quot;%-8s&quot;, $1; print $NF&#125;&apos;)</div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> technologies </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> linux </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[SSL Handshake Failure after Upgrading to JDK 8]]></title>
       <url>/2017/06/29/ssl-handshake-failure-jdk8/</url>
       <content type="html"><![CDATA[<p>This post is for tracking the process to solve a SSL issue after JDK 8 upgrade.</p>
@@ -95,32 +121,6 @@
             <tag> jdk </tag>
             
             <tag> ssl </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Check DB Connection Count for Processes on Linux]]></title>
-      <url>/2017/06/29/check-connection-count/</url>
-      <content type="html"><![CDATA[<p>Do you know how many DB connections does your process obtain? How to locate the culprit process if your database server reaches its max connections limit unexpectly? It is easy to find it out on Linux just by a few commands</p>
-<a id="more"></a>
-<h2 id="Get-Total-Connection-Count-for-All-Processes"><a href="#Get-Total-Connection-Count-for-All-Processes" class="headerlink" title="Get Total Connection Count for All Processes"></a>Get Total Connection Count for All Processes</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netstat -ap | grep [database_host] | awk &apos;&#123;print $7&#125;&apos; | awk -F &apos;/&apos; &apos;&#123;print $1&#125;&apos; | grep -v &apos;-&apos; | sort -n | uniq -c | awk &apos;&#123;s+=$1&#125; END &#123;print s&#125;&apos;</div></pre></td></tr></table></figure>
-<h2 id="List-All-Processes-Connect-to-Database"><a href="#List-All-Processes-Connect-to-Database" class="headerlink" title="List All Processes Connect to Database"></a>List All Processes Connect to Database</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netstat -ap | grep [database_host] | awk &apos;&#123;print $7&#125;&apos; | awk -F &apos;/&apos; &apos;&#123;print $1&#125;&apos; | grep -v &apos;-&apos; | sort -n | uniq | xargs ps wwp</div></pre></td></tr></table></figure>
-<h2 id="List-Connection-Count-for-Each-Process"><a href="#List-Connection-Count-for-Each-Process" class="headerlink" title="List Connection Count for Each Process"></a>List Connection Count for Each Process</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">paste -d &apos;:&apos; &lt;(netstat -ap | grep [database_host] | awk &apos;&#123;print $7&#125;&apos; | awk -F &apos;/&apos; &apos;&#123;print $1&#125;&apos; | grep -v &apos;-&apos; | sort -n | uniq -c | awk &apos;&#123;print $1&#125;&apos;) &lt;(netstat -ap | grep [database_host] | awk &apos;&#123;print $7&#125;&apos; | awk -F &apos;/&apos; &apos;&#123;print $1&#125;&apos; | grep -v &apos;-&apos; | sort -n | uniq | xargs ps --no-headers wwp)</div></pre></td></tr></table></figure>
-<h2 id="List-Connection-Count-for-Each-Process-Simplified"><a href="#List-Connection-Count-for-Each-Process-Simplified" class="headerlink" title="List Connection Count for Each Process (Simplified)"></a>List Connection Count for Each Process (Simplified)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">paste  &lt;(netstat -ap | grep [database_host] | awk &apos;&#123;print $7&#125;&apos; | awk -F &apos;/&apos; &apos;&#123;print $1&#125;&apos; | grep -v &apos;-&apos; | sort -n | uniq -c | awk &apos;BEGIN &#123;print &quot;COUNT&quot;&#125; &#123;printf &quot;%5s\n&quot;, $1&#125;&apos;) &lt;(netstat -ap | grep [database_host] | awk &apos;&#123;print $7&#125;&apos; | awk -F &apos;/&apos; &apos;&#123;print $1&#125;&apos; | grep -v &apos;-&apos; | sort -n | uniq | xargs ps wwp |  awk &apos;&#123;printf &quot;%-8s&quot;, $1; print $NF&#125;&apos;)</div></pre></td></tr></table></figure>
-]]></content>
-      
-        <categories>
-            
-            <category> technologies </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> linux </tag>
             
         </tags>
         
@@ -2366,6 +2366,36 @@ echo ${string/%abc/XYZ}
     </entry>
     
     <entry>
+      <title><![CDATA[Regex in Text Editor]]></title>
+      <url>/2016/05/16/regex-in-text-editor/</url>
+      <content type="html"><![CDATA[<p>A few tips of Regex which can improve your efficiency on processing texts.</p>
+<p>The Regex used here is PCRE.</p>
+<a id="more"></a>
+<h3 id="Delete-Empty-Lines"><a href="#Delete-Empty-Lines" class="headerlink" title="Delete Empty Lines"></a>Delete Empty Lines</h3><p>Replace <code>^[ \t]*\r\n</code> with empty string</p>
+<h3 id="Remove-Heading-Spaces-of-Each-Line"><a href="#Remove-Heading-Spaces-of-Each-Line" class="headerlink" title="Remove Heading Spaces of Each Line"></a>Remove Heading Spaces of Each Line</h3><p>Replace <code>^[ \t]+</code> with empty String</p>
+<h3 id="Remove-Trailing-Spaces-of-Each-Line"><a href="#Remove-Trailing-Spaces-of-Each-Line" class="headerlink" title="Remove Trailing Spaces of Each Line"></a>Remove Trailing Spaces of Each Line</h3><p>Replace <code>[ \t]+$</code> with empty string</p>
+<h3 id="Add-Words-to-The-Start-of-Each-Line"><a href="#Add-Words-to-The-Start-of-Each-Line" class="headerlink" title="Add Words to The Start of Each Line"></a>Add Words to The Start of Each Line</h3><p>Replace <code>^</code> with words you want to add</p>
+<h3 id="Add-Words-to-The-End-of-Each-Line"><a href="#Add-Words-to-The-End-of-Each-Line" class="headerlink" title="Add Words to The End of Each Line"></a>Add Words to The End of Each Line</h3><p>Replace <code>$</code> with words you want to add</p>
+<h3 id="Replace-Value-for-a-Tag-in-XML"><a href="#Replace-Value-for-a-Tag-in-XML" class="headerlink" title="Replace Value for a Tag in XML"></a>Replace Value for a Tag in XML</h3><p>For example, If you want replace <code>&lt;XMLTagName&gt;Value&lt;/XMLTagName&gt;</code> with <code>&lt;XMLTagName&gt;Value_New&lt;/XMLTagName&gt;</code></p>
+<p>Replace <code>(&lt;XMLTagName&gt;)(.*)(&lt;/XMLTagName&gt;)</code> with <code>$1$2_New$3</code></p>
+]]></content>
+      
+        <categories>
+            
+            <category> technologies </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> regex </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Find Out Your Java Heap Size]]></title>
       <url>/2016/05/16/find-out-your-java-heap-size/</url>
       <content type="html"><![CDATA[<p>In the <a href="http://www.oracle.com/technetwork/java/javase/memorymanagement-whitepaper-150215.pdf" target="_blank" rel="external">oracle memory management whitepaper</a>, it states:</p>
@@ -2398,36 +2428,6 @@ jinfo -flags [PID]
         <tags>
             
             <tag> jvm </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Regex in Text Editor]]></title>
-      <url>/2016/05/16/regex-in-text-editor/</url>
-      <content type="html"><![CDATA[<p>A few tips of Regex which can improve your efficiency on processing texts.</p>
-<p>The Regex used here is PCRE.</p>
-<a id="more"></a>
-<h3 id="Delete-Empty-Lines"><a href="#Delete-Empty-Lines" class="headerlink" title="Delete Empty Lines"></a>Delete Empty Lines</h3><p>Replace <code>^[ \t]*\r\n</code> with empty string</p>
-<h3 id="Remove-Heading-Spaces-of-Each-Line"><a href="#Remove-Heading-Spaces-of-Each-Line" class="headerlink" title="Remove Heading Spaces of Each Line"></a>Remove Heading Spaces of Each Line</h3><p>Replace <code>^[ \t]+</code> with empty String</p>
-<h3 id="Remove-Trailing-Spaces-of-Each-Line"><a href="#Remove-Trailing-Spaces-of-Each-Line" class="headerlink" title="Remove Trailing Spaces of Each Line"></a>Remove Trailing Spaces of Each Line</h3><p>Replace <code>[ \t]+$</code> with empty string</p>
-<h3 id="Add-Words-to-The-Start-of-Each-Line"><a href="#Add-Words-to-The-Start-of-Each-Line" class="headerlink" title="Add Words to The Start of Each Line"></a>Add Words to The Start of Each Line</h3><p>Replace <code>^</code> with words you want to add</p>
-<h3 id="Add-Words-to-The-End-of-Each-Line"><a href="#Add-Words-to-The-End-of-Each-Line" class="headerlink" title="Add Words to The End of Each Line"></a>Add Words to The End of Each Line</h3><p>Replace <code>$</code> with words you want to add</p>
-<h3 id="Replace-Value-for-a-Tag-in-XML"><a href="#Replace-Value-for-a-Tag-in-XML" class="headerlink" title="Replace Value for a Tag in XML"></a>Replace Value for a Tag in XML</h3><p>For example, If you want replace <code>&lt;XMLTagName&gt;Value&lt;/XMLTagName&gt;</code> with <code>&lt;XMLTagName&gt;Value_New&lt;/XMLTagName&gt;</code></p>
-<p>Replace <code>(&lt;XMLTagName&gt;)(.*)(&lt;/XMLTagName&gt;)</code> with <code>$1$2_New$3</code></p>
-]]></content>
-      
-        <categories>
-            
-            <category> technologies </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> regex </tag>
             
         </tags>
         
@@ -3939,11 +3939,11 @@ $ git config --global alias.last &apos;log -l HEAD&apos;
 </ol>
 <p><strong>Each level overrides values in the previous level</strong></p>
 <h3 id="Your-Identify"><a href="#Your-Identify" class="headerlink" title="Your Identify"></a>Your Identify</h3><pre><code>$ git config --global user.name &quot;Kevin He&quot;
-$ git config --global user.email kevin.he@citi.com
+$ git config --global user.email kevin_pro@163.com
 </code></pre><h3 id="Your-Editor"><a href="#Your-Editor" class="headerlink" title="Your Editor"></a>Your Editor</h3><pre><code>$ git config --global core.editor &quot;&apos;C:/Program Files (x86)/Notepad++/notepad++.exe&apos; -multiInst -nosession&quot;
 </code></pre><h3 id="Checking-Your-Settings"><a href="#Checking-Your-Settings" class="headerlink" title="Checking Your Settings"></a>Checking Your Settings</h3><pre><code>$ git config --list
 user.name=Kevin He
-user.email=kevin.he@citi.com
+user.email=kevin_pro@163.com
 </code></pre>]]></content>
       
         <categories>
@@ -4245,7 +4245,7 @@ This is reference-style link: [Google][id]
 <pre><code>&lt;http://tpscash.github.io&gt;
 &lt;tpscash@outlook.com&gt;
 </code></pre><p><a href="http://tpscash.github.io">http://tpscash.github.io</a></p>
-<p><a href="&#109;&#97;&#x69;&#108;&#116;&#x6f;&#58;&#116;&#x70;&#115;&#99;&#97;&#115;&#104;&#64;&#x6f;&#117;&#116;&#x6c;&#111;&#111;&#107;&#x2e;&#x63;&#x6f;&#109;">&#116;&#x70;&#115;&#99;&#97;&#115;&#104;&#64;&#x6f;&#117;&#116;&#x6c;&#111;&#111;&#107;&#x2e;&#x63;&#x6f;&#109;</a></p>
+<p><a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#x6f;&#58;&#116;&#112;&#x73;&#x63;&#97;&#x73;&#x68;&#64;&#x6f;&#117;&#116;&#x6c;&#x6f;&#x6f;&#107;&#x2e;&#99;&#x6f;&#109;">&#116;&#112;&#x73;&#x63;&#97;&#x73;&#x68;&#64;&#x6f;&#117;&#116;&#x6c;&#x6f;&#x6f;&#107;&#x2e;&#99;&#x6f;&#109;</a></p>
 <h3 id="反斜杠-（Backslash-Escapes）"><a href="#反斜杠-（Backslash-Escapes）" class="headerlink" title=" 反斜杠 （Backslash Escapes）"></a><a name="backslash"></a> 反斜杠 （Backslash Escapes）</h3><p>Markdown可以利用<code>\</code>来插入一些在Markdown语法中有特殊意义的符号，例如你想在一些文字前后加上星号，而不是想加入强调效果：</p>
 <pre><code>\*literal asterisks\*
 </code></pre><p>*literal asterisks*</p>
