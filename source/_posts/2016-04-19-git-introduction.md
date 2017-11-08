@@ -68,7 +68,7 @@ Git comes with a tool called git config and lets you get and set configuration v
 ### Your Identify
 
     $ git config --global user.name "Kevin He"
-    $ git config --global user.email kevin.he@citi.com
+    $ git config --global user.email kevin_pro@163.com
     
 ### Your Editor
 
@@ -78,7 +78,7 @@ Git comes with a tool called git config and lets you get and set configuration v
 
     $ git config --list
     user.name=Kevin He
-    user.email=kevin.he@citi.com
+    user.email=kevin_pro@163.com
 
     
 
