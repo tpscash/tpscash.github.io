@@ -6,6 +6,7 @@
       <title><![CDATA[Build Docker Image with Maven]]></title>
       <url>/2017/11/25/maven-docker-plugin/</url>
       <content type="html"><![CDATA[<p>You can use maven-docker-plugin to create Docker image with artifacts built from your Maven project.</p>
+<a id="more"></a>
 <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Docker allows you to treat your infrastructure as code. This code is your Dockerfile. </p>
 <p>Like any code, we want to get into a tight change -&gt; commit -&gt; build -&gt; test cycle (a full continuous integration solution). To archive this, we need to build a smooth CD pipeline.</p>
 <p>The steps will be:</p>
